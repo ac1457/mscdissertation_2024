@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../.cache/kagglehub/datasets/wordsforthewise/lending-club/versions/3/accepted_2007_to_2018q4.csv"
+		},
+		{
+			"path": "../.cache/kagglehub/datasets/wordsforthewise/lending-club/versions/3/rejected_2007_to_2018q4.csv"
+		}
+	],
+	"settings": {}
+}
