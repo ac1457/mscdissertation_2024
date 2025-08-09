@@ -12,6 +12,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score
+from sklearn.utils import resample
 from imblearn.over_sampling import SMOTE
 import xgboost as xgb
 import matplotlib
@@ -28,7 +29,13 @@ class RealLendingAnalysis:
     def __init__(self, sample_size=None):
         self.sample_size = sample_size
         self.random_state = 42
+        self.use_full_dataset = sample_size is None
         np.random.seed(self.random_state)
+        
+        if self.use_full_dataset:
+            print("FULL DATASET MODE: Using all available data")
+            print("This will provide the most robust and comprehensive results")
+            print("Expected runtime: 30-60 minutes depending on system")
         
     def load_real_data(self):
         """Load actual Lending Club data"""
@@ -52,7 +59,13 @@ class RealLendingAnalysis:
             # Method 2: Try data_loader module
             print("No local file found, trying data_loader module...")
             from data_loader import load_lending_club_data
-            df = load_lending_club_data(use_local_copy=False, sample_size=self.sample_size or 10000)
+            
+            if self.use_full_dataset:
+                print("Loading FULL dataset - this may take several minutes...")
+                df = load_lending_club_data(use_local_copy=False, sample_size=None)
+            else:
+                df = load_lending_club_data(use_local_copy=False, sample_size=self.sample_size)
+            
             print(f"Loaded {len(df):,} real Lending Club records via data_loader")
             
             return df
@@ -98,12 +111,17 @@ class RealLendingAnalysis:
             print(f"Loading: {csv_file}")
             
             # Load data
-            df = pd.read_csv(csv_file, low_memory=False)
-            print(f"Loaded {len(df):,} real records")
-            
-            if self.sample_size and len(df) > self.sample_size:
-                df = df.sample(n=self.sample_size, random_state=self.random_state)
-                print(f"Sampled {len(df):,} records")
+            if self.use_full_dataset:
+                print("Loading FULL dataset - this will take several minutes...")
+                df = pd.read_csv(csv_file, low_memory=False)
+                print(f"Loaded {len(df):,} real records (FULL DATASET)")
+            else:
+                df = pd.read_csv(csv_file, low_memory=False)
+                print(f"Loaded {len(df):,} real records")
+                
+                if self.sample_size and len(df) > self.sample_size:
+                    df = df.sample(n=self.sample_size, random_state=self.random_state)
+                    print(f"Sampled {len(df):,} records")
             
             return df
             
@@ -356,34 +374,111 @@ class RealLendingAnalysis:
         """Train models on real data"""
         print("Training models on REAL Lending Club data...")
         
+        # For very large datasets, use smaller test size to speed up training
+        if self.use_full_dataset and len(X_traditional) > 100000:
+            test_size = 0.1  # 10% for very large datasets
+            print(f"Large dataset detected ({len(X_traditional):,} samples), using 10% test split")
+        else:
+            test_size = 0.25  # 25% for smaller datasets
+        
         # Split data
         X_trad_train, X_trad_test, y_train, y_test = train_test_split(
-            X_traditional, y, test_size=0.25, stratify=y, random_state=self.random_state
+            X_traditional, y, test_size=test_size, stratify=y, random_state=self.random_state
         )
         X_sent_train, X_sent_test, _, _ = train_test_split(
-            X_sentiment, y, test_size=0.25, stratify=y, random_state=self.random_state
+            X_sentiment, y, test_size=test_size, stratify=y, random_state=self.random_state
         )
         
         print(f"Training set size: {len(X_trad_train)}")
         print(f"Test set size: {len(X_trad_test)}")
         print(f"Training class distribution: {y_train.value_counts().to_dict()}")
         
-        # Apply SMOTE for class balance
-        smote = SMOTE(random_state=self.random_state, k_neighbors=min(5, y_train.sum()-1))
-        X_trad_balanced, y_trad_balanced = smote.fit_resample(X_trad_train, y_train)
-        X_sent_balanced, y_sent_balanced = smote.fit_resample(X_sent_train, y_train)
+        # Apply class balancing strategy optimized for large datasets
+        if self.use_full_dataset and len(X_trad_train) > 500000:
+            print("Large dataset: Using downsampling + minimal SMOTE for memory efficiency")
+            
+            # Get class counts
+            minority_class = y_train.sum()
+            majority_class = len(y_train) - y_train.sum()
+            
+            print(f"Original class distribution: Majority={majority_class:,}, Minority={minority_class:,}")
+            
+            # For very large datasets, downsample majority class first, then apply minimal SMOTE
+            from sklearn.utils import resample
+            
+            # Separate classes
+            X_majority = X_trad_train[y_train == 0]
+            X_minority = X_trad_train[y_train == 1]
+            y_majority = y_train[y_train == 0]
+            y_minority = y_train[y_train == 1]
+            
+            # Downsample majority class to 3x minority size (max 300k samples)
+            max_majority_size = min(minority_class * 3, 300000)
+            
+            if len(X_majority) > max_majority_size:
+                X_majority_downsampled = resample(X_majority, 
+                                                 y_majority,
+                                                 n_samples=max_majority_size,
+                                                 random_state=self.random_state)[0]
+                y_majority_downsampled = resample(y_majority,
+                                                 n_samples=max_majority_size,
+                                                 random_state=self.random_state)
+            else:
+                X_majority_downsampled = X_majority
+                y_majority_downsampled = y_majority
+            
+            # Combine downsampled data
+            X_trad_reduced = pd.concat([X_majority_downsampled, X_minority])
+            y_trad_reduced = pd.concat([y_majority_downsampled, y_minority])
+            
+            print(f"After downsampling: {len(X_trad_reduced):,} samples")
+            
+            # Apply minimal SMOTE on reduced dataset
+            smote = SMOTE(random_state=self.random_state, k_neighbors=min(5, len(y_minority)-1))
+            X_trad_balanced, y_trad_balanced = smote.fit_resample(X_trad_reduced, y_trad_reduced)
+            
+            # Do the same for sentiment data
+            X_sent_majority = X_sent_train[y_train == 0]
+            X_sent_minority = X_sent_train[y_train == 1]
+            
+            if len(X_sent_majority) > max_majority_size:
+                X_sent_majority_downsampled = resample(X_sent_majority,
+                                                      n_samples=max_majority_size,
+                                                      random_state=self.random_state)
+            else:
+                X_sent_majority_downsampled = X_sent_majority
+            
+            X_sent_reduced = pd.concat([X_sent_majority_downsampled, X_sent_minority])
+            y_sent_reduced = pd.concat([y_majority_downsampled, y_minority])
+            
+            X_sent_balanced, y_sent_balanced = smote.fit_resample(X_sent_reduced, y_sent_reduced)
+            
+        else:
+            # Standard SMOTE for smaller datasets
+            smote = SMOTE(random_state=self.random_state, k_neighbors=min(5, y_train.sum()-1))
+            X_trad_balanced, y_trad_balanced = smote.fit_resample(X_trad_train, y_train)
+            X_sent_balanced, y_sent_balanced = smote.fit_resample(X_sent_train, y_train)
         
-        print(f"After SMOTE - Traditional: {len(X_trad_balanced)}")
-        print(f"After SMOTE - Sentiment: {len(X_sent_balanced)}")
+        print(f"After SMOTE - Traditional: {len(X_trad_balanced):,}")
+        print(f"After SMOTE - Sentiment: {len(X_sent_balanced):,}")
+        
+        # Optimize model parameters for large datasets
+        if self.use_full_dataset:
+            print("Optimizing model parameters for large dataset...")
+            n_estimators_default = 50  # Reduce for speed
+            cv_folds = 3  # Reduce CV folds for speed
+        else:
+            n_estimators_default = 100
+            cv_folds = 5
         
         # Models
         algorithms = {
             'XGBoost': xgb.XGBClassifier(
-                n_estimators=100, max_depth=6, learning_rate=0.1,
+                n_estimators=n_estimators_default, max_depth=6, learning_rate=0.1,
                 random_state=self.random_state, eval_metric='logloss'
             ),
             'RandomForest': RandomForestClassifier(
-                n_estimators=100, max_depth=10, random_state=self.random_state
+                n_estimators=n_estimators_default, max_depth=10, random_state=self.random_state
             ),
             'LogisticRegression': LogisticRegression(
                 C=1.0, max_iter=1000, random_state=self.random_state
@@ -407,8 +502,12 @@ class RealLendingAnalysis:
             trad_pred = model_trad.predict_proba(X_trad_test)[:, 1]
             sent_pred = model_sent.predict_proba(X_sent_test)[:, 1]
             
-            # Cross-validation
-            cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=self.random_state)
+            # Cross-validation (optimized for dataset size)
+            cv = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=self.random_state)
+            
+            if self.use_full_dataset:
+                print(f"  Running {cv_folds}-fold CV (this may take several minutes)...")
+            
             trad_cv_scores = cross_val_score(model, X_traditional, y, cv=cv, scoring='roc_auc')
             sent_cv_scores = cross_val_score(model, X_sentiment, y, cv=cv, scoring='roc_auc')
             
@@ -501,6 +600,12 @@ class RealLendingAnalysis:
         print("REAL LENDING CLUB SENTIMENT ANALYSIS")
         print("="*80)
         print("Using actual Lending Club data with real sentiment analysis")
+        
+        if self.use_full_dataset:
+            print("FULL DATASET MODE - Comprehensive Analysis")
+            print("This may take 30-90 minutes depending on your system")
+            print("Progress will be shown at each major step...")
+        
         print()
         
         try:
