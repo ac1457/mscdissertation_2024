@@ -1,0 +1,133 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Lending Club EDA Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                .header { background-color: #f0f0f0; padding: 20px; text-align: center; }
+                .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+                table { border-collapse: collapse; width: 100%; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f2f2f2; }
+                .metric { font-weight: bold; color: #2c3e50; }
+                .highlight { background-color: #e8f5e8; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1>Lending Club Dataset - Exploratory Data Analysis Report</h1>
+                <p>Generated on: 2025-08-09 14:29:12</p>
+            </div>
+            
+            <div class="section">
+                <h2>Dataset Overview</h2>
+                <table>
+                    <tr><th>Metric</th><th>Value</th></tr>
+                    <tr><td>Shape</td><td>(1000, 151)</td></tr>
+                    <tr><td>Memory Usage</td><td>2.84 MB</td></tr>
+                    <tr><td>Missing Values</td><td>47,823</td></tr>
+                    <tr><td>Missing Percentage</td><td>31.67%</td></tr>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Feature Analysis</h2>
+                <table>
+                    <tr><th>Feature Type</th><th>Count</th></tr>
+                    <tr><td>Categorical Features</td><td>38</td></tr>
+                    <tr><td>Numerical Features</td><td>113</td></tr>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Target Variable Analysis</h2>
+                <table>
+                    <tr><th>Loan Status</th><th>Count</th><th>Percentage</th></tr>
+        
+                    <tr><td>Fully Paid</td><td>487</td><td>48.70%</td></tr>
+            
+                    <tr><td>Current</td><td>383</td><td>38.30%</td></tr>
+            
+                    <tr><td>Charged Off</td><td>114</td><td>11.40%</td></tr>
+            
+                    <tr><td>Late (31-120 days)</td><td>9</td><td>0.90%</td></tr>
+            
+                    <tr><td>In Grace Period</td><td>4</td><td>0.40%</td></tr>
+            
+                    <tr><td>Late (16-30 days)</td><td>3</td><td>0.30%</td></tr>
+            
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Distribution Analysis</h2>
+                <table>
+                    <tr><th>Analysis Type</th><th>Count</th></tr>
+        
+                    <tr><td>Highly Skewed Features</td><td>98</td></tr>
+                    <tr><td>High Kurtosis Features</td><td>70</td></tr>
+        
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Correlation Analysis</h2>
+                <table>
+                    <tr><th>Metric</th><th>Value</th></tr>
+        
+                    <tr><td>Highly Correlated Feature Pairs</td><td>146</td></tr>
+                    <tr><td>Mean Correlation</td><td>0.178</td></tr>
+        
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Data Quality Assessment</h2>
+                <table>
+                    <tr><th>Metric</th><th>Value</th></tr>
+        
+                    <tr><td>Duplicate Rows</td><td>1,652</td></tr>
+                    <tr><td>Duplicate Percentage</td><td>56.08%</td></tr>
+                    <tr><td>Total Data Quality Issues</td><td>5</td></tr>
+        
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Feature Importance Analysis</h2>
+                <table>
+                    <tr><th>Metric</th><th>Value</th></tr>
+        
+                    <tr><td>Features Analyzed</td><td>123</td></tr>
+                    <tr><td>Top Features by MI</td><td>10</td></tr>
+        
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Statistical Tests</h2>
+                <table>
+                    <tr><th>Metric</th><th>Value</th></tr>
+        
+                    <tr><td>Features Tested</td><td>19</td></tr>
+                    <tr><td>Significant Features</td><td>15</td></tr>
+        
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Key Insights</h2>
+                <ul>
+                    <li>Dataset contains comprehensive loan information with both categorical and numerical features</li>
+                    <li>Target variable shows class imbalance (typical in lending datasets)</li>
+                    <li>Many features show high skewness, indicating need for transformation</li>
+                    <li>Sentiment analysis provides additional insights from loan descriptions</li>
+                    <li>Feature importance analysis identifies key predictive variables</li>
+                    <li>Statistical tests validate feature significance for modeling</li>
+                    <li>Data quality assessment ensures reliable model inputs</li>
+                </ul>
+            </div>
+        </body>
+        </html>
+        
