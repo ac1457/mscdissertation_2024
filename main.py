@@ -106,16 +106,21 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python main.py                           # Run real data analysis (recommended)
-  python main.py --samples 3000            # Run with 3k samples  
+  python main.py                           # Run real data analysis (5k samples)
+  python main.py --full-data               # Run with ALL data (comprehensive)
+  python main.py --samples 0               # Alternative way to use all data
+  python main.py --samples 10000           # Run with 10k samples  
   python main.py --quick                   # Run quick streamlined version
   python main.py --analyze-sentiment       # Analyze existing sentiment data
-  python main.py --synthetic               # Run synthetic analysis (artificial data - for demonstration only)
+  python main.py --synthetic               # Run synthetic analysis (artificial data)
         """
     )
     
     parser.add_argument('--samples', type=int, default=5000,
-                       help='Number of samples to analyze (default: 5000)')
+                       help='Number of samples to analyze (default: 5000, use 0 for all data)')
+    
+    parser.add_argument('--full-data', action='store_true',
+                       help='Use all available data (may take 30-60 minutes)')
     
     parser.add_argument('--quick', action='store_true',
                        help='Run quick streamlined workflow for testing')
@@ -137,19 +142,33 @@ Examples:
     
     start_time = datetime.now()
     
+    # Determine sample size
+    if args.full_data:
+        sample_size = None  # Use all data
+        print("FULL DATASET ANALYSIS - Using all available data")
+        print("Expected runtime: 30-60 minutes")
+        print()
+    elif args.samples == 0:
+        sample_size = None  # Use all data
+        print("FULL DATASET ANALYSIS - Using all available data")
+        print("Expected runtime: 30-60 minutes")
+        print()
+    else:
+        sample_size = args.samples
+    
     # Run analysis based on arguments
     if args.analyze_sentiment:
         success = analyze_existing_sentiment()
     elif args.quick:
-        success = run_streamlined_workflow(args.samples)
+        success = run_streamlined_workflow(sample_size or 3000)
     elif args.synthetic:
         print("WARNING: Synthetic analysis uses artificial data!")
-        print("For authentic dissertation results, use --real (default)")
+        print("For authentic dissertation results, use real data analysis")
         print()
-        success = run_synthetic_analysis(args.samples)
+        success = run_synthetic_analysis(sample_size or 15000)
     else:
         # Default: Run real data analysis
-        success = run_real_analysis(args.samples)
+        success = run_real_analysis(sample_size)
     
     # Print conclusion
     end_time = datetime.now()
