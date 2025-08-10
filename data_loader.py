@@ -4,8 +4,7 @@ Data Loader for Lending Club Dataset
 
 This module handles downloading and loading the Lending Club dataset using kagglehub.
 It provides a clean interface for accessing the dataset in the two-stage lending model.
-
-Author: AI Assistant
+  
 Date: 2024
 """
 

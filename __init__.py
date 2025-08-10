@@ -10,14 +10,12 @@ This package provides:
 - Two-stage modeling with sentiment analysis
 - Class imbalance handling strategies
 - Comprehensive evaluation framework
-- Complete workflow automation
-
-Author: AI Assistant
+-   Complete workflow automation
+  
 Date: 2024
 """
 
 __version__ = "1.0.0"
-__author__ = "AI Assistant"
 __email__ = "ai.assistant@example.com"
 
 # Import main components for easy access
@@ -83,7 +81,6 @@ def get_info():
     return {
         'name': PACKAGE_NAME,
         'version': __version__,
-        'author': __author__,
         'description': DESCRIPTION,
         'keywords': KEYWORDS
     }
@@ -93,7 +90,6 @@ if __name__ == "__main__":
     print("Two-Stage Lending Model Package")
     print("="*40)
     print(f"Version: {__version__}")
-    print(f"Author: {__author__}")
     print(f"Description: {DESCRIPTION}")
     print()
     print("This is a package. To run the application, use:")
