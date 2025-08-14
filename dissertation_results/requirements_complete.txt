@@ -1,0 +1,65 @@
+# Complete Requirements File - Lending Club Sentiment Analysis Dissertation
+# Pinned versions for full reproducibility
+
+# Core Data Science Libraries
+pandas==2.1.4
+numpy==1.24.3
+scipy==1.11.4
+
+# Machine Learning
+scikit-learn==1.3.2
+xgboost==2.0.3
+
+# Statistical Analysis
+statsmodels==0.14.1
+
+# Visualization
+matplotlib==3.8.2
+seaborn==0.13.0
+
+# Text Processing (for future NLP enhancements)
+nltk==3.8.1
+textblob==0.17.1
+
+# Utilities
+tqdm==4.66.1
+joblib==1.3.2
+
+# Development and Testing
+pytest==7.4.3
+black==23.11.0
+flake8==6.1.0
+
+# Documentation
+jupyter==1.0.0
+notebook==7.0.6
+
+# Environment Information
+# Python version: 3.12.0
+# Platform: macOS-14.1.1-arm64-arm-64bit
+# Created: 2024-12-19
+# Last updated: 2024-12-19
+
+# Installation Instructions:
+# 1. Create virtual environment: python -m venv dissertation_env
+# 2. Activate environment: source dissertation_env/bin/activate (Unix) or dissertation_env\Scripts\activate (Windows)
+# 3. Install requirements: pip install -r requirements_complete.txt
+# 4. Verify installation: python -c "import pandas, numpy, sklearn, xgboost; print('All packages installed successfully')"
+
+# Reproducibility Notes:
+# - All random seeds are logged in reproducibility_log.txt
+# - Data processing pipeline is documented in methodology/
+# - Analysis scripts are in analysis_modules/
+# - Results are saved in final_results/
+# - Documentation is in methodology/
+
+# Version Control:
+# - Git commit hash: d6a6fa2
+# - Branch: main
+# - Repository: https://github.com/ac1457/mscdissertation_2024.git
+
+# Contact:
+# - Author: [Your Name]
+# - Institution: [Your University]
+# - Email: [Your Email]
+# - Date: December 2024 
