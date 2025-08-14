@@ -38,74 +38,74 @@ RESULTS SUMMARY:
 RandomForest:
 --------------------
   Traditional:
-    AUC: 0.5062 (95% CI: 0.4942-0.5184)
-    PR-AUC: 0.3057
-    KS: 0.0194
+    AUC: 0.5044 (95% CI: 0.4915-0.5171)
+    PR-AUC: 0.3027
+    KS: 0.0144
     Brier: 0.2121
-    Lift@10%: 1.08
-    Calibration Error: 0.3649
+    Lift@10%: 1.09
+    Calibration Error: 0.3716
   Sentiment:
-    AUC: 0.5064 (95% CI: 0.4934-0.5189)
-    PR-AUC: 0.3017
-    KS: 0.0131
-    Brier: 0.2120
-    Lift@10%: 1.07
-    Calibration Error: 0.3789
+    AUC: 0.5033 (95% CI: 0.4909-0.5164)
+    PR-AUC: 0.2999
+    KS: 0.0106
+    Brier: 0.2124
+    Lift@10%: 1.01
+    Calibration Error: 0.3861
   Hybrid:
-    AUC: 0.5021 (95% CI: 0.4907-0.5146)
-    PR-AUC: 0.2995
-    KS: 0.0199
+    AUC: 0.5020 (95% CI: 0.4896-0.5137)
+    PR-AUC: 0.2950
+    KS: 0.0103
     Brier: 0.2126
-    Lift@10%: 0.98
-    Calibration Error: 0.3848
+    Lift@10%: 0.92
+    Calibration Error: 0.3892
 
 XGBoost:
 --------------------
   Traditional:
-    AUC: 0.4988 (95% CI: 0.4863-0.5116)
-    PR-AUC: 0.2990
-    KS: 0.0112
-    Brier: 0.2190
-    Lift@10%: 0.99
-    Calibration Error: 0.2746
-  Sentiment:
-    AUC: 0.5033 (95% CI: 0.4909-0.5157)
-    PR-AUC: 0.3015
-    KS: 0.0146
-    Brier: 0.2191
-    Lift@10%: 1.00
-    Calibration Error: 0.3321
-  Hybrid:
-    AUC: 0.4982 (95% CI: 0.4860-0.5101)
+    AUC: 0.5016 (95% CI: 0.4895-0.5142)
     PR-AUC: 0.2968
-    KS: 0.0077
-    Brier: 0.2198
-    Lift@10%: 0.98
-    Calibration Error: 0.3018
+    KS: 0.0154
+    Brier: 0.2189
+    Lift@10%: 0.99
+    Calibration Error: 0.2132
+  Sentiment:
+    AUC: 0.4935 (95% CI: 0.4810-0.5054)
+    PR-AUC: 0.2985
+    KS: 0.0072
+    Brier: 0.2205
+    Lift@10%: 1.01
+    Calibration Error: 0.2579
+  Hybrid:
+    AUC: 0.5029 (95% CI: 0.4913-0.5157)
+    PR-AUC: 0.3024
+    KS: 0.0200
+    Brier: 0.2191
+    Lift@10%: 1.02
+    Calibration Error: 0.2717
 
 LogisticRegression:
 --------------------
   Traditional:
-    AUC: 0.5043 (95% CI: 0.4917-0.5164)
-    PR-AUC: 0.3031
-    KS: 0.0134
+    AUC: 0.5063 (95% CI: 0.4928-0.5185)
+    PR-AUC: 0.3040
+    KS: 0.0177
     Brier: 0.2088
-    Lift@10%: 1.06
-    Calibration Error: 0.4413
+    Lift@10%: 1.08
+    Calibration Error: 0.4412
   Sentiment:
-    AUC: 0.5043 (95% CI: 0.4926-0.5170)
-    PR-AUC: 0.3029
-    KS: 0.0125
+    AUC: 0.5063 (95% CI: 0.4934-0.5194)
+    PR-AUC: 0.3040
+    KS: 0.0177
     Brier: 0.2088
     Lift@10%: 1.08
     Calibration Error: 0.4412
   Hybrid:
-    AUC: 0.5055 (95% CI: 0.4923-0.5170)
-    PR-AUC: 0.3038
-    KS: 0.0173
+    AUC: 0.5064 (95% CI: 0.4935-0.5185)
+    PR-AUC: 0.3036
+    KS: 0.0171
     Brier: 0.2088
-    Lift@10%: 1.10
-    Calibration Error: 0.4412
+    Lift@10%: 1.07
+    Calibration Error: 0.4416
 
 STATISTICAL SIGNIFICANCE:
 
