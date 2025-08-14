@@ -13,7 +13,7 @@ import seaborn as sns
 from sklearn.model_selection import StratifiedKFold, train_test_split
 from sklearn.metrics import (
     roc_auc_score, average_precision_score, roc_curve, precision_recall_curve,
-    brier_score_loss, calibration_curve
+    brier_score_loss
 )
 from sklearn.calibration import CalibratedClassifierCV
 from sklearn.ensemble import RandomForestClassifier
@@ -93,8 +93,27 @@ class RobustStatisticalAnalysis:
         # Brier score
         metrics['brier_score'] = brier_score_loss(y_true, y_pred_proba)
         
-        # Calibration metrics
-        fraction_of_positives, mean_predicted_value = calibration_curve(y_true, y_pred_proba, n_bins=10)
+        # Calibration metrics (manual implementation for older sklearn versions)
+        def manual_calibration_curve(y_true, y_pred_proba, n_bins=10):
+            bin_boundaries = np.linspace(0, 1, n_bins + 1)
+            bin_lowers = bin_boundaries[:-1]
+            bin_uppers = bin_boundaries[1:]
+            
+            fraction_of_positives = []
+            mean_predicted_value = []
+            
+            for bin_lower, bin_upper in zip(bin_lowers, bin_uppers):
+                mask = (y_pred_proba > bin_lower) & (y_pred_proba <= bin_upper)
+                if mask.sum() > 0:
+                    fraction_of_positives.append(y_true[mask].mean())
+                    mean_predicted_value.append(y_pred_proba[mask].mean())
+                else:
+                    fraction_of_positives.append(0)
+                    mean_predicted_value.append((bin_lower + bin_upper) / 2)
+            
+            return np.array(fraction_of_positives), np.array(mean_predicted_value)
+        
+        fraction_of_positives, mean_predicted_value = manual_calibration_curve(y_true, y_pred_proba, n_bins=10)
         metrics['calibration_error'] = np.mean(np.abs(fraction_of_positives - mean_predicted_value))
         
         # Lift metrics
@@ -187,8 +206,27 @@ class RobustStatisticalAnalysis:
         """
         Comprehensive calibration analysis
         """
-        # Calculate calibration curve
-        fraction_of_positives, mean_predicted_value = calibration_curve(y_true, y_pred_proba, n_bins=10)
+        # Calculate calibration curve (manual implementation)
+        def manual_calibration_curve(y_true, y_pred_proba, n_bins=10):
+            bin_boundaries = np.linspace(0, 1, n_bins + 1)
+            bin_lowers = bin_boundaries[:-1]
+            bin_uppers = bin_boundaries[1:]
+            
+            fraction_of_positives = []
+            mean_predicted_value = []
+            
+            for bin_lower, bin_upper in zip(bin_lowers, bin_uppers):
+                mask = (y_pred_proba > bin_lower) & (y_pred_proba <= bin_upper)
+                if mask.sum() > 0:
+                    fraction_of_positives.append(y_true[mask].mean())
+                    mean_predicted_value.append(y_pred_proba[mask].mean())
+                else:
+                    fraction_of_positives.append(0)
+                    mean_predicted_value.append((bin_lower + bin_upper) / 2)
+            
+            return np.array(fraction_of_positives), np.array(mean_predicted_value)
+        
+        fraction_of_positives, mean_predicted_value = manual_calibration_curve(y_true, y_pred_proba, n_bins=10)
         
         # Fit isotonic calibration
         from sklearn.isotonic import IsotonicRegression
