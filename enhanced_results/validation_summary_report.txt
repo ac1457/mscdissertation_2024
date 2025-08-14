@@ -1,0 +1,45 @@
+ROBUST VALIDATION ANALYSIS SUMMARY
+==================================================
+
+1. MULTIPLE VALIDATION TECHNIQUES
+------------------------------
+XGBoost:
+  Stratified K-Fold: 0.5240 ± 0.0140
+  Holdout: 0.5373
+  Repeated CV: 0.5338 ± 0.0304
+
+RandomForest:
+  Stratified K-Fold: 0.5543 ± 0.0126
+  Holdout: 0.5528
+  Repeated CV: 0.5535 ± 0.0226
+
+2. STATISTICAL SIGNIFICANCE
+------------------------------
+Traditional AUC: 0.5393
+Sentiment-Enhanced AUC: 0.5373
+Improvement: -0.0020
+P-value: 0.2329
+Significant: NO
+Effect size (Cohen's d): -0.7766
+95% CI: [-0.0760, 0.0249]
+
+3. DOMAIN-SPECIFIC ANALYSIS
+------------------------------
+Risk Segmentation:
+  Medium: 878 loans, 0.424 default rate
+  High: 665 loans, 0.492 default rate
+  Low: 273 loans, 0.315 default rate
+  Very High: 160 loans, 0.512 default rate
+
+Loan Size Analysis:
+  Very Large: 247 loans, 0.405 default rate
+  Medium: 992 loans, 0.450 default rate
+  Small: 419 loans, 0.477 default rate
+  Large: 342 loans, 0.380 default rate
+
+4. KEY FINDINGS
+------------------------------
+  Multiple validation techniques provide robust assessment
+  Statistical significance testing ensures reliable conclusions
+  Domain-specific analysis reveals practical insights
+  Validation framework strengthens academic contribution
