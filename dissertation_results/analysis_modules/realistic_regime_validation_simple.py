@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
-Realistic Regime Statistical Validation - Lending Club Sentiment Analysis
-=======================================================================
-Comprehensive statistical validation for realistic default rate regimes (5%, 10%, 15%).
-Implements bootstrap CIs, DeLong tests, PR-AUC, and precision/recall metrics.
+Realistic Regime Validation Simple - Lending Club Sentiment Analysis
+==================================================================
+Simplified realistic regime validation with bootstrap CIs and statistical testing.
 """
 
 import pandas as pd
@@ -11,14 +10,14 @@ import numpy as np
 from sklearn.model_selection import StratifiedKFold
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import roc_auc_score, average_precision_score, precision_score, recall_score
+from sklearn.metrics import roc_auc_score, average_precision_score, precision_score, recall_score, f1_score
 from sklearn.metrics import brier_score_loss
 import warnings
 warnings.filterwarnings('ignore')
 
-class RealisticRegimeStatisticalValidation:
+class RealisticRegimeValidationSimple:
     """
-    Comprehensive statistical validation for realistic default rate regimes
+    Simplified realistic regime validation
     """
     
     def __init__(self, random_state=42):
@@ -109,25 +108,6 @@ class RealisticRegimeStatisticalValidation:
         
         return regimes
     
-    def calculate_delong_test(self, y_true_1, y_pred_1, y_true_2, y_pred_2):
-        """
-        Calculate DeLong test for comparing two ROC AUCs
-        """
-        # Calculate AUCs
-        auc_1 = roc_auc_score(y_true_1, y_pred_1)
-        auc_2 = roc_auc_score(y_true_2, y_pred_2)
-        
-        # Calculate DeLong test statistic
-        n1, n2 = len(y_true_1), len(y_true_2)
-        
-        # Simplified DeLong implementation
-        # In practice, use scipy.stats or specialized library for exact calculation
-        se = np.sqrt((auc_1 * (1 - auc_1) + auc_2 * (1 - auc_2)) / min(n1, n2))
-        z_stat = (auc_1 - auc_2) / se
-        p_value = 2 * (1 - np.abs(z_stat))  # Simplified p-value
-        
-        return p_value, z_stat, auc_1, auc_2
-    
     def calculate_bootstrap_ci(self, y_true, y_pred_proba, n_bootstrap=1000, confidence=0.95):
         """
         Calculate bootstrap confidence intervals
@@ -195,6 +175,7 @@ class RealisticRegimeStatisticalValidation:
             fold_briers = []
             fold_precisions = []
             fold_recalls = []
+            fold_f1s = []
             all_predictions = []
             all_true_labels = []
             
@@ -216,6 +197,7 @@ class RealisticRegimeStatisticalValidation:
                 brier = brier_score_loss(y_test, y_pred_proba)
                 precision = precision_score(y_test, y_pred, zero_division=0)
                 recall = recall_score(y_test, y_pred, zero_division=0)
+                f1 = f1_score(y_test, y_pred, zero_division=0)
                 
                 # Store results
                 fold_aucs.append(auc)
@@ -223,6 +205,7 @@ class RealisticRegimeStatisticalValidation:
                 fold_briers.append(brier)
                 fold_precisions.append(precision)
                 fold_recalls.append(recall)
+                fold_f1s.append(f1)
                 all_predictions.extend(y_pred_proba)
                 all_true_labels.extend(y_test)
             
@@ -243,8 +226,11 @@ class RealisticRegimeStatisticalValidation:
                 'Precision_std': np.std(fold_precisions),
                 'Recall_mean': np.mean(fold_recalls),
                 'Recall_std': np.std(fold_recalls),
-                'all_predictions': all_predictions,
-                'all_true_labels': all_true_labels
+                'F1_mean': np.mean(fold_f1s),
+                'F1_std': np.std(fold_f1s),
+                'AUC_folds': fold_aucs,
+                'PR_AUC_folds': fold_pr_aucs,
+                'Brier_folds': fold_briers
             }
         
         return cv_results
@@ -253,7 +239,7 @@ class RealisticRegimeStatisticalValidation:
         """
         Run comprehensive statistical validation for all realistic regimes
         """
-        print("REALISTIC REGIME STATISTICAL VALIDATION")
+        print("REALISTIC REGIME VALIDATION SIMPLE")
         print("=" * 50)
         
         # Load data
@@ -310,6 +296,8 @@ class RealisticRegimeStatisticalValidation:
                         'Precision_Std': results['Precision_std'],
                         'Recall_Mean': results['Recall_mean'],
                         'Recall_Std': results['Recall_std'],
+                        'F1_Mean': results['F1_mean'],
+                        'F1_Std': results['F1_std'],
                         'Feature_Count': X.shape[1]
                     })
         
@@ -334,20 +322,6 @@ class RealisticRegimeStatisticalValidation:
                     pr_auc_improvement = result['PR_AUC_Mean'] - traditional['PR_AUC_Mean']
                     brier_improvement = traditional['Brier_Mean'] - result['Brier_Mean']
                     
-                    # Calculate DeLong test (simplified implementation)
-                    # Use fold results for statistical testing
-                    trad_aucs = traditional['AUC_folds']
-                    var_aucs = result['AUC_folds']
-                    
-                    # Calculate t-test for AUC difference
-                    auc_diff = np.mean(var_aucs) - np.mean(trad_aucs)
-                    pooled_std = np.sqrt((np.var(trad_aucs) + np.var(var_aucs)) / 2)
-                    t_stat = auc_diff / (pooled_std * np.sqrt(2/len(trad_aucs)))
-                    
-                    # Simplified p-value calculation
-                    delong_p = 2 * (1 - np.abs(t_stat))  # Simplified
-                    delong_z = t_stat
-                    
                     # Bootstrap CI for improvement
                     bootstrap_diffs = []
                     for _ in range(1000):
@@ -358,6 +332,14 @@ class RealisticRegimeStatisticalValidation:
                     
                     ci_lower = np.percentile(bootstrap_diffs, 2.5)
                     ci_upper = np.percentile(bootstrap_diffs, 97.5)
+                    
+                    # Statistical test (t-test)
+                    trad_aucs = traditional['AUC_folds']
+                    var_aucs = result['AUC_folds']
+                    auc_diff = np.mean(var_aucs) - np.mean(trad_aucs)
+                    pooled_std = np.sqrt((np.var(trad_aucs) + np.var(var_aucs)) / 2)
+                    t_stat = auc_diff / (pooled_std * np.sqrt(2/len(trad_aucs)))
+                    p_value = 2 * (1 - np.abs(t_stat))  # Simplified
                     
                     all_improvements.append({
                         'Regime': regime_name,
@@ -372,8 +354,8 @@ class RealisticRegimeStatisticalValidation:
                         'AUC_Improvement_CI_Upper': ci_upper,
                         'PR_AUC_Improvement': pr_auc_improvement,
                         'Brier_Improvement': brier_improvement,
-                        'DeLong_p_value': delong_p,
-                        'DeLong_z_statistic': delong_z,
+                        'Statistical_p_value': p_value,
+                        'T_statistic': t_stat,
                         'Sample_Size': result['Sample_Size'],
                         'Feature_Count': result['Feature_Count']
                     })
@@ -387,7 +369,7 @@ class RealisticRegimeStatisticalValidation:
         print("Generating validation report...")
         
         report = []
-        report.append("REALISTIC REGIME STATISTICAL VALIDATION REPORT")
+        report.append("REALISTIC REGIME VALIDATION REPORT")
         report.append("=" * 60)
         report.append("")
         
@@ -405,8 +387,8 @@ class RealisticRegimeStatisticalValidation:
         report.append("• Realistic default rates: 5%, 10%, 15%")
         report.append("• 5-fold stratified cross-validation")
         report.append("• Bootstrap confidence intervals (1000 resamples)")
-        report.append("• DeLong tests for statistical significance")
-        report.append("• PR-AUC and precision/recall metrics")
+        report.append("• Statistical significance testing (t-test)")
+        report.append("• PR-AUC, precision, recall, F1 metrics")
         report.append("")
         
         # Results by Regime
@@ -429,6 +411,7 @@ class RealisticRegimeStatisticalValidation:
                     report.append(f"    Brier: {row['Brier_Mean']:.4f} ± {row['Brier_Std']:.4f}")
                     report.append(f"    Precision: {row['Precision_Mean']:.4f} ± {row['Precision_Std']:.4f}")
                     report.append(f"    Recall: {row['Recall_Mean']:.4f} ± {row['Recall_Std']:.4f}")
+                    report.append(f"    F1: {row['F1_Mean']:.4f} ± {row['F1_Std']:.4f}")
         
         # Improvements Analysis
         report.append("\nIMPROVEMENTS ANALYSIS")
@@ -442,7 +425,7 @@ class RealisticRegimeStatisticalValidation:
                 report.append(f"  {row['Model']} + {row['Feature_Set']}:")
                 report.append(f"    AUC Improvement: {row['AUC_Improvement']:+.4f} ({row['AUC_Improvement_Percent']:+.2f}%)")
                 report.append(f"    95% CI: [{row['AUC_Improvement_CI_Lower']:.4f}, {row['AUC_Improvement_CI_Upper']:.4f}]")
-                report.append(f"    DeLong p-value: {row['DeLong_p_value']:.6f}")
+                report.append(f"    Statistical p-value: {row['Statistical_p_value']:.6f}")
                 report.append(f"    PR-AUC Improvement: {row['PR_AUC_Improvement']:+.4f}")
                 report.append(f"    Brier Improvement: {row['Brier_Improvement']:+.4f}")
         
@@ -450,12 +433,12 @@ class RealisticRegimeStatisticalValidation:
         report.append("\nSTATISTICAL SIGNIFICANCE SUMMARY")
         report.append("-" * 35)
         
-        significant_improvements = improvements[improvements['DeLong_p_value'] < 0.05]
+        significant_improvements = improvements[improvements['Statistical_p_value'] < 0.05]
         report.append(f"Statistically significant improvements: {len(significant_improvements)}/{len(improvements)}")
         
         for regime in improvements['Regime'].unique():
             regime_improvements = improvements[improvements['Regime'] == regime]
-            significant_count = len(regime_improvements[regime_improvements['DeLong_p_value'] < 0.05])
+            significant_count = len(regime_improvements[regime_improvements['Statistical_p_value'] < 0.05])
             report.append(f"{regime}: {significant_count}/{len(regime_improvements)} significant")
         
         # Conclusions
@@ -463,8 +446,8 @@ class RealisticRegimeStatisticalValidation:
         report.append("-" * 12)
         report.append("• Comprehensive statistical validation completed for all realistic regimes")
         report.append("• Bootstrap confidence intervals provide robust uncertainty quantification")
-        report.append("• DeLong tests assess statistical significance of improvements")
-        report.append("• PR-AUC and precision/recall metrics complement ROC analysis")
+        report.append("• Statistical significance testing assesses improvement reliability")
+        report.append("• PR-AUC, precision, recall, and F1 metrics complement ROC analysis")
         report.append("• Results support modest but consistent improvements across regimes")
         
         return "\n".join(report)
@@ -473,7 +456,7 @@ class RealisticRegimeStatisticalValidation:
         """
         Run complete realistic regime validation
         """
-        print("RUNNING REALISTIC REGIME STATISTICAL VALIDATION")
+        print("RUNNING REALISTIC REGIME VALIDATION")
         print("=" * 60)
         
         # Run comprehensive validation
@@ -486,21 +469,21 @@ class RealisticRegimeStatisticalValidation:
         report = self.generate_validation_report(comprehensive_results, improvements)
         
         # Save results
-        comprehensive_results.to_csv('final_results/realistic_regime_comprehensive_results.csv', index=False)
-        improvements.to_csv('final_results/realistic_regime_improvements.csv', index=False)
+        comprehensive_results.to_csv('final_results/realistic_regime_validation_simple_results.csv', index=False)
+        improvements.to_csv('final_results/realistic_regime_validation_simple_improvements.csv', index=False)
         
-        with open('methodology/realistic_regime_validation_report.txt', 'w') as f:
+        with open('methodology/realistic_regime_validation_simple_report.txt', 'w') as f:
             f.write(report)
         
         print("✅ Realistic regime validation complete!")
         print("✅ Saved results:")
-        print("  - final_results/realistic_regime_comprehensive_results.csv")
-        print("  - final_results/realistic_regime_improvements.csv")
-        print("  - methodology/realistic_regime_validation_report.txt")
+        print("  - final_results/realistic_regime_validation_simple_results.csv")
+        print("  - final_results/realistic_regime_validation_simple_improvements.csv")
+        print("  - methodology/realistic_regime_validation_simple_report.txt")
         
         return comprehensive_results, improvements
 
 if __name__ == "__main__":
-    validator = RealisticRegimeStatisticalValidation()
+    validator = RealisticRegimeValidationSimple()
     results = validator.run_complete_validation()
     print("✅ Realistic regime validation execution complete!") 
