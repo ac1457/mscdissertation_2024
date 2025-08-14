@@ -248,6 +248,30 @@ def run_diagnostic_fix():
         traceback.print_exc()
         return False
 
+def run_comprehensive_fix():
+    """Run comprehensive fix addressing root causes"""
+    logger.info("Running comprehensive fix...")
+    logger.info("Addressing root causes: ID integrity, probability inversion, row alignment")
+    
+    try:
+        from comprehensive_fix import ComprehensiveFix
+        fix = ComprehensiveFix()
+        success = fix.run_comprehensive_fix()
+        
+        if success:
+            logger.info("Comprehensive fix completed successfully!")
+            logger.info("Root causes addressed with integrity validation")
+            return True
+        else:
+            logger.error("Comprehensive fix failed")
+            return False
+        
+    except Exception as e:
+        logger.error(f"Comprehensive fix failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
 def main():
     """Main function with enhanced options and better error handling"""
     parser = argparse.ArgumentParser(
@@ -265,6 +289,7 @@ Examples:
   python main.py --revise-conclusions      # Generate revised conclusions
   python main.py --apply-robust-methods    # Apply robust methods to actual data
   python main.py --diagnostic-fix          # Run diagnostic and fix for inconsistencies
+  python main.py --comprehensive-fix       # Run comprehensive fix addressing root causes
   python main.py --samples 100000          # Run with 100k samples
   python main.py --analyze-results         # Analyze existing results
         """
@@ -302,6 +327,9 @@ Examples:
     
     parser.add_argument('--diagnostic-fix', action='store_true',
                        help='Run diagnostic and fix for inconsistencies between result regimes')
+    
+    parser.add_argument('--comprehensive-fix', action='store_true',
+                       help='Run comprehensive fix addressing root causes: ID integrity, probability inversion, row alignment')
     
     args = parser.parse_args()
     
@@ -343,6 +371,11 @@ Examples:
         print("Expected runtime: 5-10 minutes")
         print()
         success = run_diagnostic_fix()
+    elif args.comprehensive_fix:
+        print("COMPREHENSIVE FIX - Address root causes with integrity validation")
+        print("Expected runtime: 10-15 minutes")
+        print()
+        success = run_comprehensive_fix()
     elif args.comprehensive:
         print("COMPREHENSIVE ANALYSIS - Full feature engineering and validation")
         print("Expected runtime: 15-25 minutes")
