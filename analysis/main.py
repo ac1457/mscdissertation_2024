@@ -344,6 +344,30 @@ def run_enhanced_validation():
         traceback.print_exc()
         return False
 
+def run_comprehensive_validation():
+    """Run comprehensive validation: permutation tests, lift analysis, leakage checks"""
+    logger.info("Running comprehensive validation...")
+    logger.info("Adding permutation tests, lift analysis, and leakage checks")
+    
+    try:
+        from permutation_and_lift_validation import PermutationAndLiftValidation
+        validation = PermutationAndLiftValidation()
+        results = validation.run_complete_validation()
+        
+        if results is not None:
+            logger.info("Comprehensive validation completed successfully!")
+            logger.info("Permutation tests, lift analysis, and leakage checks added")
+            return True
+        else:
+            logger.error("Comprehensive validation failed")
+            return False
+        
+    except Exception as e:
+        logger.error(f"Comprehensive validation failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
 def main():
     """Main function with enhanced options and better error handling"""
     parser = argparse.ArgumentParser(
@@ -365,6 +389,7 @@ Examples:
   python main.py --critical-diagnostics    # Run critical diagnostics for root cause analysis
   python main.py --fix-target-encoding    # Fix target encoding and generate valid results
   python main.py --enhanced-validation    # Add statistical validation and confidence intervals
+  python main.py --comprehensive-validation # Permutation tests, lift analysis, leakage checks
   python main.py --samples 100000          # Run with 100k samples
   python main.py --analyze-results         # Analyze existing results
         """
@@ -414,6 +439,9 @@ Examples:
     
     parser.add_argument('--enhanced-validation', action='store_true',
                        help='Add statistical validation, confidence intervals, and DeLong tests')
+    
+    parser.add_argument('--comprehensive-validation', action='store_true',
+                       help='Run comprehensive validation: permutation tests, lift analysis, leakage checks')
     
     args = parser.parse_args()
     
@@ -475,6 +503,11 @@ Examples:
         print("Expected runtime: 15-20 minutes")
         print()
         success = run_enhanced_validation()
+    elif args.comprehensive_validation:
+        print("COMPREHENSIVE VALIDATION - Permutation tests, lift analysis, leakage checks")
+        print("Expected runtime: 20-25 minutes")
+        print()
+        success = run_comprehensive_validation()
     elif args.comprehensive:
         print("COMPREHENSIVE ANALYSIS - Full feature engineering and validation")
         print("Expected runtime: 15-25 minutes")
