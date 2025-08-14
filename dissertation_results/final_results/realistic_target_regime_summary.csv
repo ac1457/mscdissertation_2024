@@ -1,3 +1,19 @@
+# LEGEND
+# AUC: Area Under ROC Curve (0.5 = random, 1.0 = perfect)
+# PR_AUC: Area Under Precision-Recall Curve (better for imbalanced data)
+# Brier_Score: Mean squared error of probability predictions (0 = perfect, 1 = worst)
+# Brier_Improvement: Brier_traditional - Brier_variant (positive = improvement)
+# AUC_Improvement: AUC_variant - AUC_traditional (positive = improvement)
+# Statistical_Testing: Statistical testing pending - DeLong test and bootstrap CIs needed
+# Precision: True Positives / (True Positives + False Positives)
+# Recall: True Positives / (True Positives + False Negatives)
+# F1_Score: Harmonic mean of precision and recall
+# Lift: Ratio of default rate in top k% vs overall default rate
+# Capture_Rate: Percentage of all defaults captured in top k%
+# Generated: 2025-08-14T20:47:04.316145
+# Statistical testing pending - DeLong test and bootstrap CIs needed
+# Brier_Improvement = Brier_traditional - Brier_variant (positive = improvement)
+# AUC_Improvement = AUC_variant - AUC_traditional (positive = improvement)
 Regime,Base_Rate,Actual_Rate,Total_Loans,Defaults,Non_Defaults
 5%,0.05,0.1599,10000,1599,8401
 10%,0.1,0.2031,10000,2031,7969
