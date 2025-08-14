@@ -1,0 +1,13 @@
+validation_type,metric,mean,std
+validation,Traditional_RF_stratified_cv,0.961376953125,0.005870407455804991
+validation,Traditional_XGB_stratified_cv,0.9578342013888888,0.006122369125766868
+validation,Enhanced_RF_stratified_cv,0.961376953125,0.005870407455804991
+validation,Enhanced_XGB_stratified_cv,0.9578342013888888,0.006122369125766868
+validation,Traditional_RF_timeseries_cv,0.9567354943902633,0.004740378682406953
+validation,Traditional_XGB_timeseries_cv,0.9518863508606676,0.005756948486803872
+validation,Enhanced_RF_timeseries_cv,0.9567354943902633,0.004740378682406953
+validation,Enhanced_XGB_timeseries_cv,0.9518863508606676,0.005756948486803872
+validation,Traditional_RF_repeated_cv,0.9616021050347221,0.00400044407263341
+validation,Traditional_XGB_repeated_cv,0.9558756510416668,0.005202469527167294
+validation,Enhanced_RF_repeated_cv,0.9616021050347221,0.00400044407263341
+validation,Enhanced_XGB_repeated_cv,0.9558756510416668,0.005202469527167294
