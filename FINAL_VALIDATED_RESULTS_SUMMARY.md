@@ -14,7 +14,7 @@
 
 ### (b) Validated Regime (Current Results)
 - **Period**: Post-fix analysis with proper target encoding
-- **AUC Range**: 0.57-0.61 (meaningful discrimination)
+- **AUC Range**: 0.57-0.61 (modest discrimination)
 - **Status**: ✅ **VALIDATED** - Statistically significant improvements
 - **Conclusion**: Results support sentiment analysis integration
 
@@ -171,7 +171,7 @@ All calculations have been programmatically verified and match exactly:
 1. **Sentiment Integration**: Provides statistically significant improvement in default prediction
 2. **Feature Interactions**: Hybrid features show additional benefits beyond sentiment alone
 3. **Algorithm Selection**: XGBoost shows best performance with sentiment features
-4. **Practical Utility**: 3-5% AUC improvement is meaningful for credit scoring
+4. **Practical Utility**: 3-5% AUC improvement is modest but measurable for credit scoring
 
 ### Deployment Recommendations
 - **Primary Model**: XGBoost with sentiment features (AUC: 0.6016)
@@ -203,7 +203,7 @@ All calculations have been programmatically verified and match exactly:
 - ✅ **Target distribution**: Disclosed default rate (51.3%)
 - ✅ **Feature completeness**: All expected features present and properly encoded
 - ✅ **Model convergence**: All models trained successfully
-- ✅ **Prediction quality**: Meaningful discrimination above random chance
+- ✅ **Prediction quality**: Modest discrimination above random chance
 
 ## 11. Comparison with Previous Results - RESOLVED ✅
 
@@ -214,7 +214,7 @@ All calculations have been programmatically verified and match exactly:
 - **Invalid Conclusions**: Results could not be trusted
 
 ### After Fix (Validated Regime)
-- **AUC Range**: 0.57-0.61 (meaningful discrimination)
+- **AUC Range**: 0.57-0.61 (modest discrimination)
 - **Clear Discrimination**: All models show predictive power
 - **Statistical Significance**: 5 out of 6 comparisons significant
 - **Valid Conclusions**: Results support sentiment analysis integration
@@ -250,11 +250,11 @@ All calculations have been programmatically verified and match exactly:
 
 ## Conclusion
 
-**The target encoding issue has been completely resolved, and the analysis now provides statistically validated, meaningful results.** Sentiment analysis integration shows clear effectiveness in credit risk modeling, with **statistically significant improvements** of 3-5% in AUC across different algorithms.
+**The target encoding issue has been completely resolved, and the analysis now provides statistically validated, modest results.** Sentiment analysis integration shows clear effectiveness in credit risk modeling, with **statistically significant improvements** of 3-5% in AUC across different algorithms.
 
 **Key Success Metrics:**
 - ✅ **Valid Target Encoding**: Proper interpretation of loan outcomes
-- ✅ **Meaningful Discrimination**: AUC > 0.57 across all models
+- ✅ **Modest Discrimination**: AUC > 0.57 across all models
 - ✅ **Statistical Significance**: 5 out of 6 comparisons significant (p < 1e-15 to 2.13e-10)
 - ✅ **Confidence Intervals**: Narrow, precise estimates with proper overlap analysis
 - ✅ **Academic Rigor**: Proper methodology and validation

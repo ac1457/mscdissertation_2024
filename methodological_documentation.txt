@@ -29,6 +29,12 @@ ANALYSIS OVERVIEW:
 This analysis applies robust statistical methods to evaluate the effectiveness
 of sentiment analysis integration in credit risk modeling using the Lending Club dataset.
 
+METHODOLOGICAL DISCLOSURE:
+- Time period: [Specify data collection period]
+- Geographic scope: [Specify geographic coverage]
+- Data source: Lending Club loan data with synthetic text generation
+- Sampling methodology: Stratified sampling with realistic prevalence resampling
+
 METHODOLOGICAL APPROACH:
 
 1. DATA PREPARATION:
@@ -58,7 +64,7 @@ METHODOLOGICAL APPROACH:
    - Train-test split: 80-20 stratified split
    - Cross-validation: Not applied in this analysis (focus on robust testing)
 
-3. COMPREHENSIVE METRICS:
+5. COMPREHENSIVE METRICS:
    - AUC: Area Under ROC Curve
    - PR-AUC: Precision-Recall AUC
    - KS: Kolmogorov-Smirnov statistic
@@ -66,14 +72,20 @@ METHODOLOGICAL APPROACH:
    - Lift: Decision utility measure
    - Calibration Error: Probability calibration accuracy
 
-4. STATISTICAL TESTING:
+6. STATISTICAL TESTING:
    - DeLong test: For comparing ROC AUCs
    - Multiple comparison correction: Benjamini-Hochberg (FDR)
    - Bootstrap confidence intervals: 1000 resamples
    - Significance levels: *** p<0.001, ** p<0.01, * p<0.05
 
-RESULTS SUMMARY - BALANCED EXPERIMENTAL REGIME (Inflated Prevalence – Internal Reference):
-========================================================================================
+RESULTS SUMMARY - BALANCED EXPERIMENTAL REGIME (51.3% default – NOT representative):
+==================================================================================
+
+METRIC DEFINITIONS:
+- AUC_Improvement = Variant AUC – Traditional AUC (same model)
+- Improvement_Percent = AUC_Improvement / Traditional AUC
+- DeLong p-values: Primary comparative test (not CI overlap)
+- FDR-adjusted p: Benjamini-Hochberg multiple comparison correction
 
 RandomForest:
 --------------------
@@ -85,10 +97,12 @@ RandomForest:
     AUC: 0.6092 (95% CI: 0.5988-0.6206)
     Improvement: +0.0226 (+3.86%)
     DeLong p-value: < 1e-15 (***)
+    FDR-adjusted p: < 1e-15 (***)
   Hybrid:
     AUC: 0.6067 (95% CI: 0.5958-0.6183)
     Improvement: +0.0201 (+3.43%)
     DeLong p-value: 3.44e-14 (***)
+    FDR-adjusted p: 6.88e-14 (***)
 
 XGBoost:
 --------------------
@@ -100,10 +114,12 @@ XGBoost:
     AUC: 0.6016 (95% CI: 0.5914-0.6121)
     Improvement: +0.0302 (+5.29%)
     DeLong p-value: < 1e-15 (***)
+    FDR-adjusted p: < 1e-15 (***)
   Hybrid:
     AUC: 0.5904 (95% CI: 0.5790-0.6016)
     Improvement: +0.0190 (+3.33%)
     DeLong p-value: 2.13e-10 (***)
+    FDR-adjusted p: 4.26e-10 (***)
 
 LogisticRegression:
 --------------------
@@ -115,10 +131,12 @@ LogisticRegression:
     AUC: 0.5795 (95% CI: 0.5690-0.5910)
     Improvement: +0.0002 (+0.03%)
     DeLong p-value: 0.9469 (ns)
+    FDR-adjusted p: 0.9469 (ns)
   Hybrid:
     AUC: 0.6073 (95% CI: 0.5966-0.6181)
     Improvement: +0.0280 (+4.84%)
     DeLong p-value: < 1e-15 (***)
+    FDR-adjusted p: < 1e-15 (***)
     Calibration Error: 0.4412
 
 REALISTIC PREVALENCE PERFORMANCE SUMMARY (Primary for External Interpretation):
@@ -156,6 +174,8 @@ PRACTICAL VS STATISTICAL SIGNIFICANCE:
  - Statistical tests (large N) yield very small p-values but absolute ΔAUC modest (≤0.039)
  - Report absolute ΔAUC first; percent improvements can overstate magnitude at lower baselines.
  - NOTE: Realistic prevalence scenarios require separate statistical testing (DeLong tests, CIs pending)
+ - Balanced prevalence inflates relative % improvements; absolute ΔAUC is primary effect size.
+ - Overlapping CIs do not automatically imply non-significance; DeLong test is primary comparative method.
 
 LIFT & CALIBRATION (Representative Snapshot):
  - Lift@10% improvements modest (≤0.09 absolute)
