@@ -179,14 +179,15 @@ All calculations have been programmatically verified and match exactly:
 - **Implementation**: Sentiment analysis adds significant value to traditional credit models
 
 ### ROI Assessment - QUALIFIED CLAIM
-**Note**: "Clear ROI" claim requires qualification:
-- **Potential ROI**: Statistically significant improvements justify sentiment analysis costs
+**Note**: ROI claims require qualification and quantification:
+- **Potential ROI**: Modest but statistically significant improvements may justify sentiment analysis costs
 - **Cost-Benefit Analysis Required**: Actual ROI depends on:
   - Implementation costs (sentiment analysis infrastructure)
   - Operational costs (processing time, storage)
   - Expected decision lift (reduction in default rates)
   - Portfolio size and default rate assumptions
-- **Recommendation**: Conduct detailed cost-benefit analysis before production deployment
+  - **Quantified Decision Lift**: Required before claiming clear ROI
+- **Recommendation**: Conduct detailed cost-benefit analysis with quantified decision utility before production deployment
 
 ## 10. Quality Assurance - COMPLETED ✅
 
@@ -250,7 +251,7 @@ All calculations have been programmatically verified and match exactly:
 
 ## Conclusion
 
-**The target encoding issue has been completely resolved, and the analysis now provides statistically validated, modest results.** Sentiment analysis integration shows clear effectiveness in credit risk modeling, with **statistically significant improvements** of 3-5% in AUC across different algorithms.
+**The target encoding issue has been completely resolved, and the analysis now provides statistically validated, modest results.** Sentiment analysis integration shows clear effectiveness in credit risk modeling, with **statistically significant improvements** of 3-5% in AUC across different algorithms. **Note**: Realistic prevalence improvements not yet subjected to statistical significance testing.
 
 **Key Success Metrics:**
 - ✅ **Valid Target Encoding**: Proper interpretation of loan outcomes
