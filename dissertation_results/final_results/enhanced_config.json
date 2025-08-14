@@ -1,0 +1,15 @@
+{
+  "random_state": 42,
+  "bootstrap_resamples": 1000,
+  "bootstrap_method": "BCa",
+  "cv_folds": 5,
+  "calibration_bins": 10,
+  "cost_default": 1000,
+  "cost_review": 50,
+  "rejection_rates": [
+    5,
+    10,
+    20
+  ],
+  "timestamp": "2025-08-14T22:53:32.151646"
+}

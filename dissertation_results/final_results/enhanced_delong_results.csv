@@ -1,0 +1,40 @@
+# ENHANCED METRICS IMPLEMENTATION - Lending Club Sentiment Analysis
+# Generated: 2025-08-14T22:53:32.151646
+# Config Hash: 608a51d664248ef30314dc0b930b120836c3381ed332a03939e8b686998a1185
+# 
+# CONFIGURATION:
+# - Random State: 42
+# - Bootstrap Method: BCa (1000 resamples)
+# - CV Folds: 5
+# - Calibration Bins: 10
+# - Cost Matrix: Default=1000, Review=50
+# - Rejection Rates: [5, 10, 20]%
+#
+# ENHANCED METRICS:
+# - BCa Bootstrap CIs: Bias-corrected accelerated confidence intervals
+# - DeLong Structural: Proper DeLong test using structural components
+# - Calibration Before/After: Pre- and post-Platt scaling metrics
+# - Threshold-Dependent: Metrics at fixed rejection rates
+# - Cost-Benefit Analysis: Explicit cost matrix and savings
+#
+# METRICS GLOSSARY:
+# AUC: Area Under ROC Curve (0.5 = random, 1.0 = perfect)
+# PR-AUC: Area Under Precision-Recall Curve (better for imbalanced data)
+# AUC_SE: Standard error of AUC from bootstrap
+# AUC_Diff_vs_Traditional: AUC_variant - AUC_traditional (positive = improvement)
+# DeLong_Z: Z-statistic from DeLong test (structural components)
+# DeLong_p: P-value from DeLong test (structural components)
+# Brier_Before/After: Brier score before/after Platt scaling
+# Brier_Improvement: Brier_Before - Brier_After (positive = improvement)
+# ECE: Expected Calibration Error (lower = better calibration)
+# Calibration_Slope: Slope of calibration curve (1.0 = perfectly calibrated)
+# Lift@k%: Ratio of default rate in top k% vs overall default rate
+# Cost_Savings: Expected cost savings from model deployment
+# Cost_Matrix: Explicit cost structure (TP, FP, FN, TN costs)
+test_type,auc_1,auc_2,auc_difference,se_difference,z_statistic,p_value,significant,Regime,Comparison,Sample_Size
+DeLong_structural,0.5323508942285452,0.5321768850442847,0.00017400918426047074,0.0010178062308064848,0.17096494302514745,8.64e-01,False,16,Traditional_vs_Sentiment,10000
+DeLong_structural,0.5323508942285452,0.5350740728250954,-0.0027231785965502464,0.001070590170413728,-2.5436237617405717,1.10e-02,True,16,Traditional_vs_Hybrid,10000
+DeLong_structural,0.5293495431181846,0.5254041402062731,0.0039454029119114775,0.0009318032044740433,4.234158986541007,2.29e-05,True,20,Traditional_vs_Sentiment,10000
+DeLong_structural,0.5293495431181846,0.5293913100858144,-4.176696762980825e-05,0.0009917951971715432,-0.04211249232595763,9.66e-01,False,20,Traditional_vs_Hybrid,10000
+DeLong_structural,0.5199456054249819,0.516587352843745,0.003358252581236898,0.0009202301087048858,3.6493617731800128,2.63e-04,True,25,Traditional_vs_Sentiment,10000
+DeLong_structural,0.5199456054249819,0.5162599939485446,0.0036856114764373116,0.000985805649957511,3.738679603425041,1.85e-04,True,25,Traditional_vs_Hybrid,10000
