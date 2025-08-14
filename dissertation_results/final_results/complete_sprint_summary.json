@@ -1,0 +1,43 @@
+{
+  "sprint_completion": "Days 2-7 Complete",
+  "timestamp": "2025-08-14T22:39:35.444052",
+  "results_generated": [
+    "delong_results",
+    "threshold_results",
+    "calibration_results",
+    "lift_results",
+    "permutation_results",
+    "ablation_results",
+    "tfidf_features",
+    "shap_results",
+    "temporal_results",
+    "documentation"
+  ],
+  "regimes_analyzed": [
+    "5%",
+    "10%",
+    "15%"
+  ],
+  "feature_sets": [
+    "Traditional",
+    "Sentiment",
+    "Hybrid"
+  ],
+  "models": [
+    "RandomForest",
+    "LogisticRegression"
+  ],
+  "statistical_tests": [
+    "DeLong",
+    "Permutation",
+    "Bootstrap"
+  ],
+  "metrics": [
+    "AUC",
+    "PR-AUC",
+    "Brier",
+    "Calibration",
+    "Lift",
+    "SHAP"
+  ]
+}
