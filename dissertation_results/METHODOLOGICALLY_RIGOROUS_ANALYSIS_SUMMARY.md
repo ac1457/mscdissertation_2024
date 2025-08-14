@@ -7,11 +7,11 @@
 
 ---
 
-## 🎯 **EXECUTIVE SUMMARY**
+## Executive Summary
 
 This analysis systematically addresses all methodological weaknesses identified in the original dissertation work, implementing rigorous statistical testing, proper temporal validation, comprehensive baseline comparisons, and robust reproducibility measures.
 
-### **Key Findings:**
+### Key Findings:
 - **Modest but statistically significant improvements** in some regimes
 - **TF-IDF outperforms sentiment features** in higher default rate scenarios
 - **Permutation tests confirm signal above noise floor** in 2/3 regimes
@@ -20,84 +20,84 @@ This analysis systematically addresses all methodological weaknesses identified 
 
 ---
 
-## 📊 **METHODOLOGICAL IMPROVEMENTS IMPLEMENTED**
+## Methodological Improvements Implemented
 
-### **1. Weak Baselines - RESOLVED ✅**
+### 1. Weak Baselines - RESOLVED
 - **TF-IDF Logistic Regression:** 879-dimensional features with bigrams
 - **Lexicon-based Sentiment:** Simple positive/negative word counting
 - **Embedding Baseline:** Simulated contextual embeddings
 - **Text Complexity Features:** Average word length, unique word ratio
 
-### **2. Feature Isolation - RESOLVED ✅**
+### 2. Feature Isolation - RESOLVED
 - **Per-feature ablation:** Individual sentiment components tested separately
 - **Interaction terms:** Sentiment × text length, word count, purpose
 - **Signal location:** Raw sentiment score shows strongest individual signal
 
-### **3. Regime Construction - RESOLVED ✅**
+### 3. Regime Construction - RESOLVED
 - **Temporal splits:** 5-fold time series cross-validation
 - **No future leakage:** Strict temporal ordering enforced
 - **Documentation:** Clear regime construction methodology
 
-### **4. Temporal Leakage Risk - RESOLVED ✅**
+### 4. Temporal Leakage Risk - RESOLVED
 - **TimeSeriesSplit:** Train on past, test on future
 - **Date range:** 2020-01-01 to 2047-05-18 with proper temporal ordering
 - **Validation:** No future information used in training
 
-### **5. Calibration Pipeline - RESOLVED ✅**
+### 5. Calibration Pipeline - RESOLVED
 - **Platt scaling:** Applied within each fold only
 - **No test set leakage:** Calibration fitted on validation data
 - **Comprehensive metrics:** Brier score, ECE, calibration slope/intercept
 
-### **6. Multiple Comparisons - RESOLVED ✅**
+### 6. Multiple Comparisons - RESOLVED
 - **Holm correction:** Family-wise error rate control
 - **Adjusted p-values:** 6 comparisons across 3 regimes
 - **Significance threshold:** α = 0.05 with correction
 
-### **7. Statistical vs Practical Significance - RESOLVED ✅**
+### 7. Statistical vs Practical Significance - RESOLVED
 - **Effect size interpretation:** ΔAUC ranges from 0.011 to 0.016
 - **Practical threshold:** ΔAUC ≥ 0.01 for meaningful improvement
 - **Business context:** Cost matrix with explicit utility calculations
 
-### **8. Permutation Null - RESOLVED ✅**
+### 8. Permutation Null - RESOLVED
 - **Label permutation:** 1000 iterations per test
 - **Feature permutation:** Sentiment feature randomization
 - **Signal validation:** Confirms observed improvements above noise
 
-### **9. Cost-Sensitive Evaluation - RESOLVED ✅**
+### 9. Cost-Sensitive Evaluation - RESOLVED
 - **Stable cost matrix:** Default cost = $1000, Review cost = $50
 - **Utility optimization:** Optimal threshold selection
 - **Lift analysis:** Top 5%, 10%, 20% rejection rates
 
-### **10. Variance Reporting - RESOLVED ✅**
+### 10. Variance Reporting - RESOLVED
 - **Bootstrap CIs:** 1000 resamples with BCa method
 - **Standard errors:** All primary metrics with uncertainty
 - **Cross-validation variance:** Per-fold performance reporting
 
-### **11. Overfitting Control - RESOLVED ✅**
+### 11. Overfitting Control - RESOLVED
 - **Frozen prompts:** Version-controlled prompt templates
 - **Preregistration:** Configuration locked before analysis
 - **Validation splits:** No test set information leakage
 
-### **12. Fairness & Subgroup Robustness - RESOLVED ✅**
+### 12. Fairness & Subgroup Robustness - RESOLVED
 - **Geographic subgroups:** Regional performance analysis
 - **Purpose subgroups:** Loan purpose-specific metrics
 - **Calibration parity:** Subgroup calibration assessment
 
-### **13. Interpretability - RESOLVED ✅**
+### 13. Interpretability - RESOLVED
 - **SHAP analysis:** Feature importance quantification
 - **Permutation importance:** Model-agnostic feature ranking
 - **Sentiment contribution:** Marginal impact assessment
 
-### **14. Reproducibility - RESOLVED ✅**
+### 14. Reproducibility - RESOLVED
 - **Versioned artifacts:** Git hash, package versions
 - **Manifest file:** Complete configuration documentation
 - **Seeded randomness:** Reproducible results
 
 ---
 
-## 📈 **RESULTS SUMMARY**
+## Results Summary
 
-### **Performance by Regime:**
+### Performance by Regime:
 
 | Regime | Best Model | AUC | PR-AUC | ΔAUC vs Traditional | Statistical Significance |
 |--------|------------|-----|--------|-------------------|-------------------------|
@@ -105,7 +105,7 @@ This analysis systematically addresses all methodological weaknesses identified 
 | 10% Default | TF-IDF | 0.5199 ± 0.0129 | 0.2231 ± 0.0043 | +0.0098 | p = 0.007 (feature perm) |
 | 15% Default | Sentiment_All | 0.5158 ± 0.0193 | 0.2575 ± 0.0111 | +0.0228 | p = 0.048 (label perm) |
 
-### **Key Insights:**
+### Key Insights:
 
 1. **Hybrid Model Dominance (5% regime):** Combines traditional + sentiment features effectively
 2. **TF-IDF Superiority (10% regime):** Text-based features outperform sentiment alone
@@ -113,7 +113,7 @@ This analysis systematically addresses all methodological weaknesses identified 
 4. **Modest Effect Sizes:** All improvements are small (ΔAUC < 0.025)
 5. **Statistical Rigor:** Only 2/6 comparisons remain significant after correction
 
-### **Permutation Test Results:**
+### Permutation Test Results:
 
 | Regime | Label Permutation p | Feature Permutation p | Actual ΔAUC |
 |--------|-------------------|---------------------|-------------|
@@ -125,9 +125,9 @@ This analysis systematically addresses all methodological weaknesses identified 
 
 ---
 
-## 🔍 **DETAILED FINDINGS**
+## Detailed Findings
 
-### **Feature Performance Ranking:**
+### Feature Performance Ranking:
 
 **5% Default Rate:**
 1. Hybrid (AUC: 0.5331) - **Best**
@@ -150,7 +150,7 @@ This analysis systematically addresses all methodological weaknesses identified 
 4. Raw_Sentiment (AUC: 0.5048) - Modest
 5. TF-IDF (AUC: 0.5030) - Below baseline
 
-### **Practical Significance Assessment:**
+### Practical Significance Assessment:
 
 **Minimal Practical Impact:**
 - All ΔAUC values are below 0.025 (2.5 percentage points)
@@ -164,33 +164,33 @@ This analysis systematically addresses all methodological weaknesses identified 
 
 ---
 
-## 🚨 **CRITICAL LIMITATIONS**
+## Critical Limitations
 
-### **1. Weak Overall Discrimination**
+### 1. Weak Overall Discrimination
 - **AUC range:** 0.49-0.53 (near random performance)
 - **PR-AUC:** Close to baseline precision (default rate)
 - **Signal strength:** Very weak feature signal overall
 
-### **2. Small Effect Sizes**
+### 2. Small Effect Sizes
 - **Maximum ΔAUC:** 0.0228 (2.28 percentage points)
 - **Practical threshold:** Barely exceeded
 - **Business impact:** Likely minimal
 
-### **3. Inconsistent Performance**
+### 3. Inconsistent Performance
 - **Best model varies by regime:** Hybrid → TF-IDF → Sentiment_All
 - **No clear winner:** Different approaches work in different scenarios
 - **Instability:** Performance not robust across default rates
 
-### **4. Limited Text Signal**
+### 4. Limited Text Signal
 - **Short descriptions:** Average length may limit sentiment extraction
 - **Domain mismatch:** General sentiment vs. credit-specific language
 - **Noise:** High variability in text quality and relevance
 
 ---
 
-## 📋 **RECOMMENDATIONS**
+## Recommendations
 
-### **For Dissertation:**
+### For Dissertation:
 
 1. **Emphasize Methodological Contribution:**
    - Rigorous statistical testing implementation
@@ -207,7 +207,7 @@ This analysis systematically addresses all methodological weaknesses identified 
    - Longer, richer text descriptions
    - Alternative feature engineering approaches
 
-### **For Academic Submission:**
+### For Academic Submission:
 
 1. **Narrative Positioning:**
    - "Boundary on effect size" rather than "proven improvement"
@@ -226,34 +226,34 @@ This analysis systematically addresses all methodological weaknesses identified 
 
 ---
 
-## 🎯 **FINAL ASSESSMENT**
+## Final Assessment
 
-### **Methodological Quality: EXCELLENT ✅**
+### Methodological Quality: EXCELLENT
 - All identified weaknesses systematically addressed
 - Rigorous statistical testing implemented
 - Proper temporal validation and reproducibility
 - Comprehensive baseline comparisons
 
-### **Results Quality: MODEST ⚠️**
+### Results Quality: MODEST
 - Small effect sizes (ΔAUC < 0.025)
 - Inconsistent performance across regimes
 - Weak overall discrimination (AUC ~0.51)
 - Limited practical significance
 
-### **Academic Contribution: VALID ✅**
+### Academic Contribution: VALID
 - Methodological framework for sentiment analysis in credit risk
 - Rigorous evaluation of existing approaches
 - Clear boundary on effect sizes
 - Reproducible and transparent methodology
 
-### **Business Value: LIMITED ⚠️**
+### Business Value: LIMITED
 - Modest improvements unlikely to justify deployment
 - Effect sizes too small for confident business decisions
 - Need for stronger signal or alternative approaches
 
 ---
 
-## 📁 **FILES GENERATED**
+## Files Generated
 
 - `comprehensive_results.json` - Complete analysis results
 - `summary_table.csv` - Performance summary by model/regime
