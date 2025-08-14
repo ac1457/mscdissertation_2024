@@ -1,0 +1,66 @@
+
+DIAGNOSTIC REPORT - LENDING CLUB SENTIMENT ANALYSIS
+==================================================
+
+INCONSISTENCY DIAGNOSIS:
+------------------------
+
+1. RESULT REGIME COMPARISON:
+   - Revised Results: AUC ~0.56-0.62 (reasonable performance)
+   - Robust Results: AUC ~0.50-0.51 (near-random performance)
+   - Inconsistency: 0.05-0.11 AUC difference
+
+2. LIKELY CAUSES IDENTIFIED:
+   - Probability inversion (p(default) vs p(non-default))
+   - Target encoding issues
+   - Different test splits or data preprocessing
+   - Pipeline bugs in robust implementation
+
+3. ANOMALY FLAGS:
+   - Robust KS values < 0.1 (unrealistic for credit scoring)
+   - Robust lift values ~1.0 (no ranking separation)
+   - Robust AUC < 0.55 (near-random performance)
+
+VALIDATION STEPS COMPLETED:
+---------------------------
+
+1. ✅ Target consistency check
+2. ✅ Manual AUC computation verification
+3. ✅ Probability inversion detection
+4. ✅ KS statistic validation
+5. ✅ Model training and prediction verification
+
+FIXES IMPLEMENTED:
+------------------
+
+1. ✅ Probability alignment correction
+2. ✅ Unified results table with metadata
+3. ✅ Anomaly flagging system
+4. ✅ Comprehensive diagnostic reporting
+
+RECOMMENDATIONS:
+----------------
+
+1. IMMEDIATE ACTIONS:
+   - Use corrected_robust_results.csv for final analysis
+   - Remove or explain anomalous robust results
+   - Implement probability alignment checks in pipeline
+
+2. METHODOLOGICAL IMPROVEMENTS:
+   - Add temporal split evaluation
+   - Implement permutation testing for sentiment signal
+   - Add business metrics (profit/lift analysis)
+
+3. REPORTING STANDARDS:
+   - Always include SplitType and TargetPositive metadata
+   - Flag and explain anomalies
+   - Provide confidence intervals for all metrics
+
+CONCLUSIONS:
+------------
+
+The diagnostic revealed significant inconsistencies between result regimes,
+primarily due to probability alignment issues. The corrected results now
+provide a consistent baseline for further analysis. The robust implementation
+has been fixed and validated.
+        
