@@ -1,0 +1,71 @@
+{
+  "timestamp": "2025-08-14T22:35:17.313728",
+  "random_state": 42,
+  "pipeline_version": "1.0.0",
+  "analysis_type": "Focused Improvements (1-3)",
+  "metrics": {
+    "regime_stats": {
+      "total_regimes": 3,
+      "total_feature_sets": 3,
+      "best_auc_by_regime": {
+        "5%": {
+          "best_auc": 0.5350505281039928,
+          "best_feature_set": "Hybrid"
+        },
+        "10%": {
+          "best_auc": 0.5296578573922434,
+          "best_feature_set": "Traditional"
+        },
+        "15%": {
+          "best_auc": 0.5200683720482411,
+          "best_feature_set": "Traditional"
+        }
+      }
+    },
+    "delong_tests": {
+      "total_comparisons": 6,
+      "significant_improvements": 1,
+      "mean_auc_improvement": 0.001431703450710381
+    },
+    "calibration": {
+      "total_models": 6,
+      "mean_brier_score": 0.19088526000000003,
+      "mean_ece": 0.12014133333333332,
+      "mean_brier_improvement": 0.0002652666666666803
+    },
+    "decision_utility": {
+      "total_models": 9,
+      "mean_lift_10": 0.967766422856919,
+      "mean_cost_savings": 149899.9999999999
+    }
+  },
+  "summary_stats": {
+    "total_analyses": 30,
+    "regimes_analyzed": [
+      "5%",
+      "10%",
+      "15%"
+    ],
+    "feature_sets_analyzed": [
+      "Traditional",
+      "Sentiment",
+      "Hybrid"
+    ],
+    "statistical_tests": [
+      "Bootstrap confidence intervals (1000 resamples)",
+      "DeLong tests for AUC comparisons",
+      "5-fold stratified cross-validation"
+    ],
+    "calibration_metrics": [
+      "Brier Score, ECE, Calibration Slope/Intercept",
+      "Reliability bin analysis",
+      "Improvement metrics (\u0394Brier, \u0394ECE)"
+    ],
+    "decision_utility": [
+      "Lift@5%, 10%, 20%",
+      "Business threshold analysis",
+      "Cost-benefit analysis"
+    ]
+  },
+  "hash": "aa48e325fcf06695cc51313b6c75183f04c535d8f6e6ce92ecbcd3630d5d1fb9"
+}
