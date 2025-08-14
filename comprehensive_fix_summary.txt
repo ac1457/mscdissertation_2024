@@ -14,13 +14,13 @@ Total models evaluated: 9
 Anomalies detected: 9
 
 AUC Performance:
-- Range: 0.5011 - 0.5072
-- Mean: 0.5043
+- Range: 0.5004 - 0.5117
+- Mean: 0.5058
 - Anomalies: 9
 
 KS Performance:
-- Range: 0.0134 - 0.0175
-- Mean: 0.0153
+- Range: 0.0103 - 0.0287
+- Mean: 0.0189
 - Anomalies: 9
 
 Lift Performance:
@@ -30,7 +30,7 @@ Lift Performance:
 
 Permutation Tests:
 - Completed: 6
-- Significant (p < 0.05): 0
+- Significant (p < 0.05): 2
 
 FILES GENERATED:
 ----------------
