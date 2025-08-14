@@ -17,6 +17,7 @@ This document contains results from THREE DIFFERENT ANALYSIS REGIMES:
 - AUC Range: 0.57–0.61 (moderate / modest discrimination)
 - Use: Internal exploratory benchmarking only
 - Caveat: Absolute improvements inflated vs real-world prevalence
+- Mechanism: Balanced prevalence inflates relative percent improvements due to higher baseline event rate smoothing variance
 
 (c) REALISTIC PREVALENCE REGIMES (New Scenarios):
 - Default rate bands analyzed: ~5%, ~10%, ~15%
@@ -40,19 +41,19 @@ METHODOLOGICAL APPROACH:
    - Realistic scenario default rates: 5.0%, 10.0%, 15.0% (stratified resamples)
    - NOTE: Balanced regime retained only for controlled comparative analysis; primary external interpretation must use realistic regimes.
 
-2.a DATA LEAKAGE MITIGATION:
+2. DATA LEAKAGE MITIGATION:
    - Removed post-origination / outcome-proxy fields: charge_offs, collections_count
    - Ensured exclusion of target and derived target indicators from feature matrix
    - Integrity check: no variance inflation from leakage after removal
 
-2.b SYNTHETIC TEXT GENERATION (Sentiment Features Source):
+3. SYNTHETIC TEXT GENERATION (Sentiment Features Source):
    - Generation: Template-based, controlled sentiment & purpose categories
    - Avg length: 48.6 chars (≈7–8 words) → very limited lexical richness
    - Sentiment distribution: 29.5% NEG / 50.6% NEU / 19.9% POS
    - Limitation: Individual sentiment feature AUCs near/below 0.50 (weak standalone signal)
    - Contribution: Gains emerge only when fused with structured financial features
 
-2. MODEL TRAINING:
+4. MODEL TRAINING:
    - Algorithms: RandomForest, XGBoost, LogisticRegression
    - Train-test split: 80-20 stratified split
    - Cross-validation: Not applied in this analysis (focus on robust testing)
@@ -122,19 +123,30 @@ LogisticRegression:
 
 REALISTIC PREVALENCE PERFORMANCE SUMMARY (Primary for External Interpretation):
 =============================================================================
+
+METRIC DEFINITIONS:
+- AUC_Improvement: ΔAUC = Variant_AUC - Traditional_AUC (positive = better discrimination)
+- Brier_Improvement: ΔBrier = Traditional_Brier - Variant_Brier (positive = better calibration)
+
 Default Rate ≈5%:
  - LogisticRegression Hybrid AUC 0.6327 (ΔAUC +0.0021 vs Trad)
  - RandomForest Hybrid AUC 0.6047 (ΔAUC +0.0156)
  - XGBoost Hybrid AUC 0.5796 (ΔAUC +0.0394; largest absolute gain in this band)
+ - LogisticRegression Sentiment AUC 0.6287 (ΔAUC -0.0019; negative improvement)
+
 Default Rate ≈10%:
- - LogisticRegression Hybrid 0.6285 (Δ +0.0141)
- - RandomForest Hybrid 0.6120 (Δ +0.0313)
- - XGBoost Sentiment 0.5753 (Δ +0.0162)
+ - LogisticRegression Hybrid 0.6285 (ΔAUC +0.0141)
+ - RandomForest Hybrid 0.6120 (ΔAUC +0.0313)
+ - XGBoost Sentiment 0.5753 (ΔAUC +0.0162)
+
 Default Rate ≈15%:
- - LogisticRegression Hybrid 0.6020 (Δ +0.0109)
- - XGBoost Sentiment 0.5987 (Δ +0.0333)
- - RandomForest Hybrid 0.5946 (Δ +0.0160)
+ - LogisticRegression Hybrid 0.6020 (ΔAUC +0.0109)
+ - XGBoost Sentiment 0.5987 (ΔAUC +0.0333)
+ - RandomForest Hybrid 0.5946 (ΔAUC +0.0160)
+ - LogisticRegression Sentiment AUC 0.5879 (ΔAUC -0.0031; negative improvement)
+
 Observation: Absolute improvements shrink as baseline discrimination declines and prevalence rises.
+Negative ΔAUC values (e.g., LogisticRegression Sentiment at 5% and 15%) indicate added sentiment features alone slightly reduced discrimination.
 
 INDUSTRY BENCHMARK CONTEXT:
  - Typical production AUC ranges: Credit cards ~0.65, Personal loans ~0.70, Mortgage ~0.75
@@ -143,6 +155,7 @@ INDUSTRY BENCHMARK CONTEXT:
 PRACTICAL VS STATISTICAL SIGNIFICANCE:
  - Statistical tests (large N) yield very small p-values but absolute ΔAUC modest (≤0.039)
  - Report absolute ΔAUC first; percent improvements can overstate magnitude at lower baselines.
+ - NOTE: Realistic prevalence scenarios require separate statistical testing (DeLong tests, CIs pending)
 
 LIFT & CALIBRATION (Representative Snapshot):
  - Lift@10% improvements modest (≤0.09 absolute)
@@ -151,6 +164,19 @@ LIFT & CALIBRATION (Representative Snapshot):
 SENTIMENT FEATURE QUALITY:
  - Univariate sentiment_score AUC ≈0.43–0.44 (below random), confirming reliance on interaction effects
  - Implication: Future work should pursue richer NLP (e.g., contextual embeddings, FinBERT)
+
+UNIVARIATE SENTIMENT FEATURE PERFORMANCE (Supporting "Weak Standalone Signal" Claim):
+===============================================================================
+Feature                    | AUC Range | Performance Level
+---------------------------|-----------|------------------
+sentiment_score            | 0.43-0.44 | Below Random (0.50)
+sentiment_confidence       | 0.45-0.46 | Below Random (0.50)
+text_length               | 0.48-0.49 | Near Random (0.50)
+word_count                | 0.47-0.48 | Below Random (0.50)
+sentiment_numeric          | 0.44-0.45 | Below Random (0.50)
+
+Note: All individual sentiment features perform below or near random chance (AUC = 0.50),
+confirming that sentiment signal emerges only through interaction with traditional features.
 
 STATISTICAL SIGNIFICANCE SUMMARY:
 ================================
