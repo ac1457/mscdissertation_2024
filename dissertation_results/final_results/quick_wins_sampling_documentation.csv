@@ -1,4 +1,0 @@
-Target_Prevalence,Sampling_Method,Original_Size,Original_Defaults,Original_Non_Defaults,Original_Prevalence,Target_Size,Target_Defaults,Target_Non_Defaults,Train_Size,Train_Defaults,Train_Non_Defaults,Train_Prevalence,Test_Size,Test_Defaults,Test_Non_Defaults,Test_Prevalence,Random_Seed
-5.0%,Stratified downsampling of majority class,50000,25650,24350,51.3%,50000,2500,47500,40000,2000,38000,5.0%,10000,500,9500,5.0%,47
-10.0%,Stratified downsampling of majority class,50000,25650,24350,51.3%,50000,5000,45000,40000,4000,36000,10.0%,10000,1000,9000,10.0%,52
-15.0%,Stratified downsampling of majority class,50000,25650,24350,51.3%,50000,7500,42500,40000,6000,34000,15.0%,10000,1500,8500,15.0%,57

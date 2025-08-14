@@ -1,5 +1,0 @@
-Regime,Total_Records,Positives,Negatives,Default_Rate,Train_Total,Train_Positives,Test_Total,Test_Positives
-Balanced_Experimental,10000,4924,5076,49.2%,8000,3939,2000,985
-Realistic_5_Percent,10000,474,9526,4.7%,8000,379,2000,95
-Realistic_10_Percent,10000,961,9039,9.6%,8000,769,2000,192
-Realistic_15_Percent,10000,1448,8552,14.5%,8000,1158,2000,290
