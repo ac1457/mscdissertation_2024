@@ -1,0 +1,8 @@
+{
+  "main_random_state": 42,
+  "bootstrap_resamples": 1000,
+  "cv_folds": 5,
+  "permutation_tests": 100,
+  "calibration_bins": 10,
+  "timestamp": "2025-08-14T22:32:24.719473"
+}

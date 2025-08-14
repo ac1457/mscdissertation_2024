@@ -1,44 +1,8 @@
-# Sentiment Analysis Dissertation Study Requirements
-# ================================================
-# Optimized for Python 3.11+ compatibility
-
-# Core data science libraries
-pandas>=1.5.0,<2.1.0
-numpy>=1.21.0,<1.26.0
-
-# Machine learning libraries (Python 3.11 compatible versions)
-scikit-learn>=1.2.0,<1.4.0
-xgboost>=1.7.0,<2.1.0
-scipy>=1.10.0,<1.12.0
-
-# Deep learning and NLP for sentiment analysis
-transformers>=4.25.0,<5.0.0
-torch>=1.13.0,<3.0.0
-tokenizers>=0.13.0
-
-# Data processing and utilities
-beautifulsoup4>=4.11.0
-tqdm>=4.64.0
-kagglehub>=0.1.0
-
-# Class imbalance handling
-imbalanced-learn>=0.10.0,<0.12.0
-
-# Visualization for analysis
-matplotlib>=3.6.0,<4.0.0
-seaborn>=0.12.0,<1.0.0
-
-# Model persistence and utilities
-joblib>=1.2.0,<2.0.0
-
-# Development and analysis tools
-jupyter>=1.0.0
-ipykernel>=6.0.0
-
-# Additional utilities for streamlined workflow
-# argparse, logging, pathlib are built-in Python modules
-
-# Compatibility notes:
-# - Tested with Python 3.11
-# - For Python 3.13: may need conda environment
-# - All versions locked for reproducibility
+# Pinned requirements for reproducibility
+pandas>=1.5.0,<2.0.0
+numpy>=1.21.0,<2.0.0
+scikit-learn>=1.1.0,<2.0.0
+scipy>=1.9.0,<2.0.0
+matplotlib>=3.5.0,<4.0.0
+seaborn>=0.11.0,<1.0.0
+# Generated: 2025-08-14T22:32:24.720016
