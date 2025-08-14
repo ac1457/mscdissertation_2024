@@ -71,18 +71,18 @@ class CorrectedRigorousAnalysis:
             )
             df = df.sort_values('origination_date').reset_index(drop=True)
             
-            print(f"✅ Loaded dataset: {len(df)} records")
+            print(f"Loaded dataset: {len(df)} records")
             print(f"   Date range: {df['origination_date'].min().date()} to {df['origination_date'].max().date()}")
             print(f"   NOTE: Future dates are synthetic for temporal validation")
             
             return df
         except FileNotFoundError:
-            print("❌ Dataset not found")
+            print("Dataset not found")
             return None
     
     def create_rich_text_baselines(self, df):
         """Create rich text baselines"""
-        print("\n📊 Creating rich text baselines...")
+        print("\nCreating rich text baselines...")
         
         # TF-IDF baseline
         tfidf_vectorizer = TfidfVectorizer(
@@ -97,7 +97,7 @@ class CorrectedRigorousAnalysis:
             columns=[f'tfidf_{i}' for i in range(tfidf_features.shape[1])]
         )
         
-        # Simple lexicon-based sentiment
+        # Simple lexicon-based sentiment (VADER-like)
         positive_words = ['good', 'great', 'excellent', 'positive', 'success', 'improve', 'help', 'support']
         negative_words = ['bad', 'poor', 'negative', 'problem', 'issue', 'difficult', 'struggle', 'debt']
         
@@ -114,14 +114,14 @@ class CorrectedRigorousAnalysis:
             lambda x: len(set(x.lower().split())) / len(x.split()) if x.split() else 0
         )
         
-        print(f"   ✅ TF-IDF features: {tfidf_df.shape[1]} dimensions")
-        print(f"   ✅ Lexicon sentiment: mean={df['lexicon_sentiment'].mean():.3f}")
+        print(f"   TF-IDF features: {tfidf_df.shape[1]} dimensions")
+        print(f"   Lexicon sentiment: mean={df['lexicon_sentiment'].mean():.3f}")
         
         return df, tfidf_df
     
     def prepare_feature_sets(self, df, tfidf_df):
         """Prepare feature sets with isolation"""
-        print("\n🔍 Preparing feature sets...")
+        print("\nPreparing feature sets...")
         
         # Base traditional features
         traditional_features = [
@@ -155,12 +155,12 @@ class CorrectedRigorousAnalysis:
         # Remove empty sets
         feature_sets = {k: v for k, v in feature_sets.items() if len(v) > 0}
         
-        print(f"   ✅ Feature sets prepared: {len(feature_sets)} variants")
+        print(f"   Feature sets prepared: {len(feature_sets)} variants")
         return feature_sets
     
     def create_temporal_splits(self, df):
         """Create temporal splits"""
-        print("\n⏰ Creating temporal splits...")
+        print("\nCreating temporal splits...")
         
         tscv = TimeSeriesSplit(n_splits=5)
         temporal_splits = []
@@ -176,7 +176,7 @@ class CorrectedRigorousAnalysis:
                 'test_date_range': (test_data['origination_date'].min(), test_data['origination_date'].max())
             })
         
-        print(f"   ✅ Created {len(temporal_splits)} temporal splits")
+        print(f"   Created {len(temporal_splits)} temporal splits")
         return temporal_splits
     
     def train_model_with_calibration(self, X_train, y_train, X_test, y_test):
@@ -255,7 +255,7 @@ class CorrectedRigorousAnalysis:
     
     def perform_permutation_tests(self, y_true, y_pred_baseline, y_pred_enhanced, n_permutations=1000):
         """Perform permutation tests with proper design"""
-        print(f"   🔄 Performing permutation tests ({n_permutations} iterations)...")
+        print(f"   Performing permutation tests ({n_permutations} iterations)...")
         
         # Convert to numpy arrays
         y_true = np.array(y_true)
@@ -364,7 +364,7 @@ class CorrectedRigorousAnalysis:
     
     def run_corrected_analysis(self):
         """Run the corrected comprehensive analysis"""
-        print("🚀 Starting Corrected Rigorous Analysis")
+        print("Starting Corrected Rigorous Analysis")
         print("=" * 60)
         
         # Load data
@@ -392,7 +392,7 @@ class CorrectedRigorousAnalysis:
             if target_col not in df.columns:
                 continue
                 
-            print(f"\n📊 Analyzing target: {target_col}")
+            print(f"\nAnalyzing target: {target_col}")
             print("-" * 40)
             
             y = df[target_col]
@@ -400,7 +400,7 @@ class CorrectedRigorousAnalysis:
             
             # Run analysis for each feature set
             for feature_set_name, features in feature_sets.items():
-                print(f"   🔧 {feature_set_name} features...")
+                print(f"   {feature_set_name} features...")
                 
                 # Prepare features
                 if feature_set_name == 'TF-IDF':
@@ -546,7 +546,7 @@ class CorrectedRigorousAnalysis:
         # Apply multiple comparison correction
         if all_p_values:
             correction_results = self.apply_multiple_comparison_correction(all_p_values)
-            print(f"\n📊 Multiple comparison correction results:")
+            print(f"\nMultiple comparison correction results:")
             print(f"   Original p-values: {correction_results['original_p_values']}")
             print(f"   Corrected p-values: {correction_results['corrected_p_values']}")
             print(f"   Rejected hypotheses: {np.sum(correction_results['rejected'])}")
@@ -568,7 +568,7 @@ class CorrectedRigorousAnalysis:
     
     def save_corrected_results(self, results, consolidated_data, correction_results=None):
         """Save corrected results"""
-        print("\n💾 Saving corrected results...")
+        print("\nSaving corrected results...")
         
         # Create results directory
         results_dir = Path('final_results/corrected_rigorous')
@@ -600,10 +600,10 @@ class CorrectedRigorousAnalysis:
         with open(results_dir / 'manifest.json', 'w') as f:
             json.dump(manifest, f, indent=2)
         
-        print(f"   ✅ Results saved to {results_dir}")
+        print(f"   Results saved to {results_dir}")
         
         # Print summary
-        print(f"\n📋 CORRECTED RESULTS SUMMARY:")
+        print(f"\nCORRECTED RESULTS SUMMARY:")
         print("=" * 50)
         for row in consolidated_data:
             print(f"Regime: {row['Regime']}")
@@ -640,11 +640,11 @@ if __name__ == "__main__":
     analysis = CorrectedRigorousAnalysis(random_state=42)
     results, consolidated_data = analysis.run_corrected_analysis()
     
-    print("\n🎉 Corrected Rigorous Analysis Complete!")
+    print("\nCorrected Rigorous Analysis Complete!")
     print("=" * 60)
-    print("✅ All inconsistencies fixed")
-    print("✅ Consistent ΔAUC calculations")
-    print("✅ Proper significance reporting")
-    print("✅ Practical threshold enforcement")
-    print("✅ Consolidated results table")
-    print("✅ Ready for final submission") 
+    print("All inconsistencies fixed")
+    print("Consistent ΔAUC calculations")
+    print("Proper significance reporting")
+    print("Practical threshold enforcement")
+    print("Consolidated results table")
+    print("Ready for final submission") 
