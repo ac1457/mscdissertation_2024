@@ -4,7 +4,7 @@ COMPREHENSIVE METHODOLOGICAL DOCUMENTATION
 
 IMPORTANT DISCLOSURE - RESULT REGIMES:
 =====================================
-This document contains results from TWO DIFFERENT ANALYSIS REGIMES:
+This document contains results from THREE DIFFERENT ANALYSIS REGIMES:
 
 (a) INVALID REGIME (Previous Results):
 - Period: Initial analysis with target encoding issues
@@ -12,11 +12,17 @@ This document contains results from TWO DIFFERENT ANALYSIS REGIMES:
 - Status: ❌ INVALID - Target variable incorrectly encoded
 - Conclusion: Results could not be trusted or published
 
-(b) VALIDATED REGIME (Current Results):
-- Period: Post-fix analysis with proper target encoding
-- AUC Range: 0.57-0.61 (meaningful discrimination)
-- Status: ✅ VALIDATED - Statistically significant improvements
-- Conclusion: Results support sentiment analysis integration
+(b) VALIDATED (Balanced Experimental) REGIME:
+- Target balance: 51.3% default (NOT representative)
+- AUC Range: 0.57–0.61 (moderate / modest discrimination)
+- Use: Internal exploratory benchmarking only
+- Caveat: Absolute improvements inflated vs real-world prevalence
+
+(c) REALISTIC PREVALENCE REGIMES (New Scenarios):
+- Default rate bands analyzed: ~5%, ~10%, ~15%
+- Best AUCs: 0.6327 (5%), 0.6285 (10%), 0.6020 (15%)
+- Absolute ΔAUC vs Traditional (per model/variant): 0.001–0.039
+- Practical interpretation: Incremental, not transformative gains
 
 ANALYSIS OVERVIEW:
 This analysis applies robust statistical methods to evaluate the effectiveness
@@ -29,8 +35,22 @@ METHODOLOGICAL APPROACH:
    - Sentiment features: 31 features (26 traditional + 5 sentiment)
    - Hybrid features: 34 features (31 sentiment + 3 interactions)
    - Target variable: Binary default indicator (loan_status: 0=Non-default, 1=Default)
-   - Sample size: 50,000 loans
-   - Default rate: 51.3% (balanced dataset for modeling purposes)
+   - Sample size: 50,000 loans (balanced regime) + resampled realistic subsets
+   - Default rate (balanced regime): 51.3% (experimental)
+   - Realistic scenario default rates: 5.0%, 10.0%, 15.0% (stratified resamples)
+   - NOTE: Balanced regime retained only for controlled comparative analysis; primary external interpretation must use realistic regimes.
+
+2.a DATA LEAKAGE MITIGATION:
+   - Removed post-origination / outcome-proxy fields: charge_offs, collections_count
+   - Ensured exclusion of target and derived target indicators from feature matrix
+   - Integrity check: no variance inflation from leakage after removal
+
+2.b SYNTHETIC TEXT GENERATION (Sentiment Features Source):
+   - Generation: Template-based, controlled sentiment & purpose categories
+   - Avg length: 48.6 chars (≈7–8 words) → very limited lexical richness
+   - Sentiment distribution: 29.5% NEG / 50.6% NEU / 19.9% POS
+   - Limitation: Individual sentiment feature AUCs near/below 0.50 (weak standalone signal)
+   - Contribution: Gains emerge only when fused with structured financial features
 
 2. MODEL TRAINING:
    - Algorithms: RandomForest, XGBoost, LogisticRegression
@@ -51,8 +71,8 @@ METHODOLOGICAL APPROACH:
    - Bootstrap confidence intervals: 1000 resamples
    - Significance levels: *** p<0.001, ** p<0.01, * p<0.05
 
-RESULTS SUMMARY - VALIDATED REGIME (Current Results):
-===================================================
+RESULTS SUMMARY - BALANCED EXPERIMENTAL REGIME (Inflated Prevalence – Internal Reference):
+========================================================================================
 
 RandomForest:
 --------------------
@@ -100,6 +120,38 @@ LogisticRegression:
     DeLong p-value: < 1e-15 (***)
     Calibration Error: 0.4412
 
+REALISTIC PREVALENCE PERFORMANCE SUMMARY (Primary for External Interpretation):
+=============================================================================
+Default Rate ≈5%:
+ - LogisticRegression Hybrid AUC 0.6327 (ΔAUC +0.0021 vs Trad)
+ - RandomForest Hybrid AUC 0.6047 (ΔAUC +0.0156)
+ - XGBoost Hybrid AUC 0.5796 (ΔAUC +0.0394; largest absolute gain in this band)
+Default Rate ≈10%:
+ - LogisticRegression Hybrid 0.6285 (Δ +0.0141)
+ - RandomForest Hybrid 0.6120 (Δ +0.0313)
+ - XGBoost Sentiment 0.5753 (Δ +0.0162)
+Default Rate ≈15%:
+ - LogisticRegression Hybrid 0.6020 (Δ +0.0109)
+ - XGBoost Sentiment 0.5987 (Δ +0.0333)
+ - RandomForest Hybrid 0.5946 (Δ +0.0160)
+Observation: Absolute improvements shrink as baseline discrimination declines and prevalence rises.
+
+INDUSTRY BENCHMARK CONTEXT:
+ - Typical production AUC ranges: Credit cards ~0.65, Personal loans ~0.70, Mortgage ~0.75
+ - Current best (realistic prevalence): 0.63 (near but below lower benchmark band)
+
+PRACTICAL VS STATISTICAL SIGNIFICANCE:
+ - Statistical tests (large N) yield very small p-values but absolute ΔAUC modest (≤0.039)
+ - Report absolute ΔAUC first; percent improvements can overstate magnitude at lower baselines.
+
+LIFT & CALIBRATION (Representative Snapshot):
+ - Lift@10% improvements modest (≤0.09 absolute)
+ - Brier score deltas minimal (≤0.0015), indicating limited probabilistic refinement
+
+SENTIMENT FEATURE QUALITY:
+ - Univariate sentiment_score AUC ≈0.43–0.44 (below random), confirming reliance on interaction effects
+ - Implication: Future work should pursue richer NLP (e.g., contextual embeddings, FinBERT)
+
 STATISTICAL SIGNIFICANCE SUMMARY:
 ================================
 
@@ -135,16 +187,9 @@ LIMITATIONS AND CONSIDERATIONS:
    - Implement hyperparameter tuning for additional gains
    - Conduct detailed cost-benefit analysis for ROI assessment
 
-CONCLUSIONS - VALIDATED REGIME:
-The analysis demonstrates that sentiment analysis integration provides statistically
-significant and meaningful improvements in credit risk modeling, with benefits varying
-across algorithms. Key findings:
-
-- 5 out of 6 comparisons show statistically significant improvements (p < 1e-15 to 2.13e-10)
-- XGBoost Sentiment shows largest improvement (+5.29% AUC)
-- RandomForest Sentiment achieves highest overall AUC (0.6092)
-- LogisticRegression Sentiment shows minimal improvement (not significant)
-
-The practical value is demonstrated through statistically validated improvements,
-though implementation requires careful consideration of costs and validation on
-representative datasets.
+CONCLUSIONS - REALISTIC PREVALENCE ANALYSIS:
+The balanced experimental regime shows statistically significant but modest improvements.
+Realistic prevalence analyses confirm incremental (not transformative) gains:
+ - ΔAUC range (realistic): 0.001–0.039
+ - Improvements depend on algorithm + feature fusion (Hybrid > Sentiment > Traditional in most cases; exceptions exist for XGBoost)
+Practical value is conditional: gains must be weighed against added complexity and cost; further temporal, external, and cost-benefit validation required before deployment claims.
