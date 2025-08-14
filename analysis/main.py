@@ -296,6 +296,30 @@ def run_critical_diagnostics():
         traceback.print_exc()
         return False
 
+def run_fix_target_encoding():
+    """Fix target encoding issue and generate valid results"""
+    logger.info("Fixing target encoding issue...")
+    logger.info("Generating valid results with proper target variable")
+    
+    try:
+        from fix_target_encoding import FixTargetEncoding
+        fix = FixTargetEncoding()
+        results = fix.run_complete_fix()
+        
+        if results is not None:
+            logger.info("Target encoding fix completed successfully!")
+            logger.info("Valid results generated with proper target variable")
+            return True
+        else:
+            logger.error("Target encoding fix failed")
+            return False
+        
+    except Exception as e:
+        logger.error(f"Target encoding fix failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
 def main():
     """Main function with enhanced options and better error handling"""
     parser = argparse.ArgumentParser(
@@ -315,6 +339,7 @@ Examples:
   python main.py --diagnostic-fix          # Run diagnostic and fix for inconsistencies
   python main.py --comprehensive-fix       # Run comprehensive fix addressing root causes
   python main.py --critical-diagnostics    # Run critical diagnostics for root cause analysis
+  python main.py --fix-target-encoding    # Fix target encoding and generate valid results
   python main.py --samples 100000          # Run with 100k samples
   python main.py --analyze-results         # Analyze existing results
         """
@@ -358,6 +383,9 @@ Examples:
     
     parser.add_argument('--critical-diagnostics', action='store_true',
                        help='Run critical diagnostics to identify root causes of near-random performance')
+    
+    parser.add_argument('--fix-target-encoding', action='store_true',
+                       help='Fix target encoding issue and generate valid results')
     
     args = parser.parse_args()
     
@@ -409,6 +437,11 @@ Examples:
         print("Expected runtime: 5-10 minutes")
         print()
         success = run_critical_diagnostics()
+    elif args.fix_target_encoding:
+        print("FIX TARGET ENCODING - Generate valid results with proper target variable")
+        print("Expected runtime: 10-15 minutes")
+        print()
+        success = run_fix_target_encoding()
     elif args.comprehensive:
         print("COMPREHENSIVE ANALYSIS - Full feature engineering and validation")
         print("Expected runtime: 15-25 minutes")
