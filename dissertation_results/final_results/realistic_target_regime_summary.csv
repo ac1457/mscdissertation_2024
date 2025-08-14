@@ -1,0 +1,4 @@
+Regime,Base_Rate,Actual_Rate,Total_Loans,Defaults,Non_Defaults
+5%,0.05,0.1599,10000,1599,8401
+10%,0.1,0.2031,10000,2031,7969
+15%,0.15,0.2486,10000,2486,7514
