@@ -176,6 +176,34 @@ class ApplyRobustMethods:
         
         return z, p_value, auc1, auc2
     
+    def manual_fdr_correction(self, p_values, alpha=0.05):
+        """
+        Manual implementation of Benjamini-Hochberg FDR correction
+        """
+        if not p_values:
+            return []
+        
+        # Sort p-values and get indices
+        sorted_indices = np.argsort(p_values)
+        sorted_p_values = np.array(p_values)[sorted_indices]
+        
+        # Calculate adjusted p-values
+        n = len(p_values)
+        adjusted_p_values = np.zeros(n)
+        
+        for i, p_val in enumerate(sorted_p_values):
+            adjusted_p_values[i] = min(p_val * n / (i + 1), 1.0)
+        
+        # Ensure monotonicity
+        for i in range(n-2, -1, -1):
+            adjusted_p_values[i] = min(adjusted_p_values[i], adjusted_p_values[i+1])
+        
+        # Restore original order
+        result = np.zeros(n)
+        result[sorted_indices] = adjusted_p_values
+        
+        return result.tolist()
+    
     def bootstrap_confidence_interval(self, y_true, y_pred, metric_func, n_bootstrap=1000, confidence=0.95):
         """
         Calculate bootstrap confidence interval
@@ -311,7 +339,13 @@ class ApplyRobustMethods:
         print("\nPERFORMING STATISTICAL TESTING")
         print("=" * 50)
         
-        from statsmodels.stats.multitest import multipletests
+        # Try to import statsmodels with fallback
+        try:
+            from statsmodels.stats.multitest import multipletests
+            statsmodels_available = True
+        except ImportError:
+            print("⚠️  WARNING: statsmodels not available, using manual multiple comparison correction")
+            statsmodels_available = False
         
         p_values = []
         comparisons = []
@@ -346,12 +380,25 @@ class ApplyRobustMethods:
             }
         
         # Multiple comparison correction
-        rejected, p_corrected, _, _ = multipletests(p_values, method='fdr_bh')
-        
-        print(f"\nMultiple comparison correction (Benjamini-Hochberg):")
-        for i, (comp, p_orig, p_adj, is_rejected) in enumerate(zip(comparisons, p_values, p_corrected, rejected)):
-            significance = "***" if is_rejected else ""
-            print(f"  {comp}: p = {p_orig:.4f}, p_adj = {p_adj:.4f} {significance}")
+        if statsmodels_available:
+            try:
+                rejected, p_corrected, _, _ = multipletests(p_values, method='fdr_bh')
+                print(f"\nMultiple comparison correction (Benjamini-Hochberg):")
+                for i, (comp, p_orig, p_adj, is_rejected) in enumerate(zip(comparisons, p_values, p_corrected, rejected)):
+                    significance = "***" if is_rejected else ""
+                    print(f"  {comp}: p = {p_orig:.4f}, p_adj = {p_adj:.4f} {significance}")
+            except Exception as e:
+                print(f"⚠️  WARNING: Multiple comparison correction failed: {e}")
+                rejected = [False] * len(p_values)
+                p_corrected = p_values
+        else:
+            # Manual Benjamini-Hochberg correction
+            p_corrected = self.manual_fdr_correction(p_values)
+            rejected = [p < 0.05 for p in p_corrected]
+            print(f"\nManual FDR correction:")
+            for i, (comp, p_orig, p_adj, is_rejected) in enumerate(zip(comparisons, p_values, p_corrected, rejected)):
+                significance = "***" if is_rejected else ""
+                print(f"  {comp}: p = {p_orig:.4f}, p_adj = {p_adj:.4f} {significance}")
         
         return test_results, p_corrected, rejected
     
