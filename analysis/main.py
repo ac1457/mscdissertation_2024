@@ -320,6 +320,30 @@ def run_fix_target_encoding():
         traceback.print_exc()
         return False
 
+def run_enhanced_validation():
+    """Add statistical validation, confidence intervals, and DeLong tests"""
+    logger.info("Running enhanced validation...")
+    logger.info("Adding statistical validation and confidence intervals")
+    
+    try:
+        from enhanced_results_validation import EnhancedResultsValidation
+        validation = EnhancedResultsValidation()
+        results = validation.run_complete_validation()
+        
+        if results is not None:
+            logger.info("Enhanced validation completed successfully!")
+            logger.info("Statistical validation and confidence intervals added")
+            return True
+        else:
+            logger.error("Enhanced validation failed")
+            return False
+        
+    except Exception as e:
+        logger.error(f"Enhanced validation failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
 def main():
     """Main function with enhanced options and better error handling"""
     parser = argparse.ArgumentParser(
@@ -340,6 +364,7 @@ Examples:
   python main.py --comprehensive-fix       # Run comprehensive fix addressing root causes
   python main.py --critical-diagnostics    # Run critical diagnostics for root cause analysis
   python main.py --fix-target-encoding    # Fix target encoding and generate valid results
+  python main.py --enhanced-validation    # Add statistical validation and confidence intervals
   python main.py --samples 100000          # Run with 100k samples
   python main.py --analyze-results         # Analyze existing results
         """
@@ -386,6 +411,9 @@ Examples:
     
     parser.add_argument('--fix-target-encoding', action='store_true',
                        help='Fix target encoding issue and generate valid results')
+    
+    parser.add_argument('--enhanced-validation', action='store_true',
+                       help='Add statistical validation, confidence intervals, and DeLong tests')
     
     args = parser.parse_args()
     
@@ -442,6 +470,11 @@ Examples:
         print("Expected runtime: 10-15 minutes")
         print()
         success = run_fix_target_encoding()
+    elif args.enhanced_validation:
+        print("ENHANCED VALIDATION - Add statistical validation and confidence intervals")
+        print("Expected runtime: 15-20 minutes")
+        print()
+        success = run_enhanced_validation()
     elif args.comprehensive:
         print("COMPREHENSIVE ANALYSIS - Full feature engineering and validation")
         print("Expected runtime: 15-25 minutes")
