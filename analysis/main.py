@@ -272,6 +272,30 @@ def run_comprehensive_fix():
         traceback.print_exc()
         return False
 
+def run_critical_diagnostics():
+    """Run critical diagnostics to identify root causes"""
+    logger.info("Running critical diagnostics...")
+    logger.info("Identifying root causes of near-random performance")
+    
+    try:
+        from critical_diagnostics import CriticalDiagnostics
+        diagnostics = CriticalDiagnostics()
+        success = diagnostics.run_complete_diagnostics()
+        
+        if success:
+            logger.info("Critical diagnostics completed successfully!")
+            logger.info("Root causes identified and documented")
+            return True
+        else:
+            logger.error("Critical diagnostics failed")
+            return False
+        
+    except Exception as e:
+        logger.error(f"Critical diagnostics failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
 def main():
     """Main function with enhanced options and better error handling"""
     parser = argparse.ArgumentParser(
@@ -290,6 +314,7 @@ Examples:
   python main.py --apply-robust-methods    # Apply robust methods to actual data
   python main.py --diagnostic-fix          # Run diagnostic and fix for inconsistencies
   python main.py --comprehensive-fix       # Run comprehensive fix addressing root causes
+  python main.py --critical-diagnostics    # Run critical diagnostics for root cause analysis
   python main.py --samples 100000          # Run with 100k samples
   python main.py --analyze-results         # Analyze existing results
         """
@@ -330,6 +355,9 @@ Examples:
     
     parser.add_argument('--comprehensive-fix', action='store_true',
                        help='Run comprehensive fix addressing root causes: ID integrity, probability inversion, row alignment')
+    
+    parser.add_argument('--critical-diagnostics', action='store_true',
+                       help='Run critical diagnostics to identify root causes of near-random performance')
     
     args = parser.parse_args()
     
@@ -376,6 +404,11 @@ Examples:
         print("Expected runtime: 10-15 minutes")
         print()
         success = run_comprehensive_fix()
+    elif args.critical_diagnostics:
+        print("CRITICAL DIAGNOSTICS - Identify root causes of near-random performance")
+        print("Expected runtime: 5-10 minutes")
+        print()
+        success = run_critical_diagnostics()
     elif args.comprehensive:
         print("COMPREHENSIVE ANALYSIS - Full feature engineering and validation")
         print("Expected runtime: 15-25 minutes")
