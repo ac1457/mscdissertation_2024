@@ -368,6 +368,54 @@ def run_comprehensive_validation():
         traceback.print_exc()
         return False
 
+def run_fix_leakage_and_rebalance():
+    """Fix data leakage, rebalance with realistic default rates, and add industry benchmarks"""
+    logger.info("Fixing data leakage and rebalancing...")
+    logger.info("Removing leakage features and testing with realistic default rates")
+    
+    try:
+        from fix_leakage_and_rebalance import FixLeakageAndRebalance
+        fix = FixLeakageAndRebalance()
+        results = fix.run_complete_fix()
+        
+        if results is not None:
+            logger.info("Leakage fix and rebalancing completed successfully!")
+            logger.info("Clean results with realistic default rates and industry benchmarks")
+            return True
+        else:
+            logger.error("Leakage fix and rebalancing failed")
+            return False
+        
+    except Exception as e:
+        logger.error(f"Leakage fix and rebalancing failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
+def run_document_synthetic_text():
+    """Document synthetic text generation process for methodological transparency"""
+    logger.info("Documenting synthetic text generation process...")
+    logger.info("Creating comprehensive methodology documentation")
+    
+    try:
+        from synthetic_text_documentation import SyntheticTextDocumentation
+        doc = SyntheticTextDocumentation()
+        documentation = doc.run_complete_documentation()
+        
+        if documentation:
+            logger.info("Synthetic text documentation completed successfully!")
+            logger.info("Methodology transparency and process documentation added")
+            return True
+        else:
+            logger.error("Synthetic text documentation failed")
+            return False
+        
+    except Exception as e:
+        logger.error(f"Synthetic text documentation failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
 def main():
     """Main function with enhanced options and better error handling"""
     parser = argparse.ArgumentParser(
@@ -390,6 +438,8 @@ Examples:
   python main.py --fix-target-encoding    # Fix target encoding and generate valid results
   python main.py --enhanced-validation    # Add statistical validation and confidence intervals
   python main.py --comprehensive-validation # Permutation tests, lift analysis, leakage checks
+  python main.py --fix-leakage-and-rebalance # Fix leakage and test realistic default rates
+  python main.py --document-synthetic-text  # Document synthetic text generation process
   python main.py --samples 100000          # Run with 100k samples
   python main.py --analyze-results         # Analyze existing results
         """
@@ -442,6 +492,12 @@ Examples:
     
     parser.add_argument('--comprehensive-validation', action='store_true',
                        help='Run comprehensive validation: permutation tests, lift analysis, leakage checks')
+    
+    parser.add_argument('--fix-leakage-and-rebalance', action='store_true',
+                       help='Fix data leakage, rebalance with realistic default rates, and add industry benchmarks')
+    
+    parser.add_argument('--document-synthetic-text', action='store_true',
+                       help='Document synthetic text generation process for methodological transparency')
     
     args = parser.parse_args()
     
@@ -508,6 +564,16 @@ Examples:
         print("Expected runtime: 20-25 minutes")
         print()
         success = run_comprehensive_validation()
+    elif args.fix_leakage_and_rebalance:
+        print("FIX LEAKAGE AND REBALANCE - Remove leakage features and test realistic default rates")
+        print("Expected runtime: 25-30 minutes")
+        print()
+        success = run_fix_leakage_and_rebalance()
+    elif args.document_synthetic_text:
+        print("DOCUMENT SYNTHETIC TEXT - Create comprehensive methodology documentation")
+        print("Expected runtime: 5-10 minutes")
+        print()
+        success = run_document_synthetic_text()
     elif args.comprehensive:
         print("COMPREHENSIVE ANALYSIS - Full feature engineering and validation")
         print("Expected runtime: 15-25 minutes")
