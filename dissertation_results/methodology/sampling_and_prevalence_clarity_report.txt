@@ -1,0 +1,66 @@
+SAMPLING AND PREVALENCE CLARITY REPORT
+==================================================
+
+SAMPLING METHODOLOGY
+--------------------
+Method: Stratified downsampling of majority class
+Purpose: Create realistic prevalence scenarios for external interpretation
+Independence: Each regime created independently with different random seeds
+
+SAMPLE COUNTS BY REGIME
+-------------------------
+
+5.0% Default Rate Regime:
+  Sampling Method: Stratified downsampling of majority class
+  Random Seed: 47
+  Train Set: 8,000 records
+    - Defaults: 428 (5.3%)
+    - Non-defaults: 7,572
+  Test Set: 2,000 records
+    - Defaults: 107 (5.3%)
+    - Non-defaults: 1,893
+  Total: 10,000 records
+    - Total defaults: 535
+    - Total non-defaults: 9,465
+    - Overall prevalence: 0.053
+
+10.0% Default Rate Regime:
+  Sampling Method: Stratified downsampling of majority class
+  Random Seed: 52
+  Train Set: 8,000 records
+    - Defaults: 794 (9.9%)
+    - Non-defaults: 7,206
+  Test Set: 2,000 records
+    - Defaults: 198 (9.9%)
+    - Non-defaults: 1,802
+  Total: 10,000 records
+    - Total defaults: 992
+    - Total non-defaults: 9,008
+    - Overall prevalence: 0.099
+
+15.0% Default Rate Regime:
+  Sampling Method: Stratified downsampling of majority class
+  Random Seed: 57
+  Train Set: 8,000 records
+    - Defaults: 1,201 (15.0%)
+    - Non-defaults: 6,799
+  Test Set: 2,000 records
+    - Defaults: 300 (15.0%)
+    - Non-defaults: 1,700
+  Total: 10,000 records
+    - Total defaults: 1,501
+    - Total non-defaults: 8,499
+    - Overall prevalence: 0.150
+
+SUMMARY STATISTICS
+--------------------
+Total records across all regimes: 30,000
+Total defaults across all regimes: 3,028
+Total non-defaults across all regimes: 26,972
+Overall prevalence across all regimes: 0.101
+
+VALIDATION CHECKS
+---------------
+5.0% regime: Target 0.050, Actual 0.053 ✅ PASS
+10.0% regime: Target 0.100, Actual 0.099 ✅ PASS
+15.0% regime: Target 0.150, Actual 0.150 ✅ PASS
