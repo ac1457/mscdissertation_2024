@@ -204,6 +204,26 @@ def run_revised_conclusions():
         traceback.print_exc()
         return False
 
+def run_apply_robust_methods():
+    """Apply robust statistical methods to actual data"""
+    logger.info("Applying robust statistical methods to actual data...")
+    logger.info("Comprehensive analysis with proper statistical testing and documentation")
+    
+    try:
+        from apply_robust_methods import ApplyRobustMethods
+        analyzer = ApplyRobustMethods()
+        results = analyzer.run_comprehensive_analysis()
+        
+        logger.info("Robust methods applied successfully!")
+        logger.info("Comprehensive results and documentation generated")
+        return True
+        
+    except Exception as e:
+        logger.error(f"Robust methods application failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
 def main():
     """Main function with enhanced options and better error handling"""
     parser = argparse.ArgumentParser(
@@ -219,6 +239,7 @@ Examples:
   python main.py --model-improvement       # Run model improvement strategies
   python main.py --robust-statistical      # Run robust statistical analysis
   python main.py --revise-conclusions      # Generate revised conclusions
+  python main.py --apply-robust-methods    # Apply robust methods to actual data
   python main.py --samples 100000          # Run with 100k samples
   python main.py --analyze-results         # Analyze existing results
         """
@@ -251,6 +272,9 @@ Examples:
     parser.add_argument('--revise-conclusions', action='store_true',
                        help='Generate revised conclusions addressing methodological issues')
     
+    parser.add_argument('--apply-robust-methods', action='store_true',
+                       help='Apply robust statistical methods to actual data and generate comprehensive results')
+    
     args = parser.parse_args()
     
     # Print enhanced header
@@ -281,6 +305,11 @@ Examples:
         print("Expected runtime: 2-5 minutes")
         print()
         success = run_revised_conclusions()
+    elif args.apply_robust_methods:
+        print("APPLY ROBUST METHODS - Comprehensive analysis with actual data")
+        print("Expected runtime: 10-15 minutes")
+        print()
+        success = run_apply_robust_methods()
     elif args.comprehensive:
         print("COMPREHENSIVE ANALYSIS - Full feature engineering and validation")
         print("Expected runtime: 15-25 minutes")
