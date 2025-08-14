@@ -224,6 +224,30 @@ def run_apply_robust_methods():
         traceback.print_exc()
         return False
 
+def run_diagnostic_fix():
+    """Run diagnostic and fix for inconsistencies"""
+    logger.info("Running diagnostic and fix for inconsistencies...")
+    logger.info("Addressing inconsistencies between result regimes")
+    
+    try:
+        from diagnostic_and_fix import DiagnosticAndFix
+        diagnostic = DiagnosticAndFix()
+        success = diagnostic.run_complete_diagnostic()
+        
+        if success:
+            logger.info("Diagnostic and fix completed successfully!")
+            logger.info("Inconsistencies identified and corrected")
+            return True
+        else:
+            logger.error("Diagnostic and fix failed")
+            return False
+        
+    except Exception as e:
+        logger.error(f"Diagnostic and fix failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
 def main():
     """Main function with enhanced options and better error handling"""
     parser = argparse.ArgumentParser(
@@ -240,6 +264,7 @@ Examples:
   python main.py --robust-statistical      # Run robust statistical analysis
   python main.py --revise-conclusions      # Generate revised conclusions
   python main.py --apply-robust-methods    # Apply robust methods to actual data
+  python main.py --diagnostic-fix          # Run diagnostic and fix for inconsistencies
   python main.py --samples 100000          # Run with 100k samples
   python main.py --analyze-results         # Analyze existing results
         """
@@ -274,6 +299,9 @@ Examples:
     
     parser.add_argument('--apply-robust-methods', action='store_true',
                        help='Apply robust statistical methods to actual data and generate comprehensive results')
+    
+    parser.add_argument('--diagnostic-fix', action='store_true',
+                       help='Run diagnostic and fix for inconsistencies between result regimes')
     
     args = parser.parse_args()
     
@@ -310,6 +338,11 @@ Examples:
         print("Expected runtime: 10-15 minutes")
         print()
         success = run_apply_robust_methods()
+    elif args.diagnostic_fix:
+        print("DIAGNOSTIC AND FIX - Address inconsistencies between result regimes")
+        print("Expected runtime: 5-10 minutes")
+        print()
+        success = run_diagnostic_fix()
     elif args.comprehensive:
         print("COMPREHENSIVE ANALYSIS - Full feature engineering and validation")
         print("Expected runtime: 15-25 minutes")
