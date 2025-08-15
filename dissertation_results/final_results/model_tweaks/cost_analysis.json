@@ -1,0 +1,38 @@
+{
+  "attention": {
+    "auc": 0.5247718889072356,
+    "auc_improvement": 0.024771888907235584,
+    "cost_per_prediction": 0.01,
+    "cost_benefit_ratio": 2.4771888907235584,
+    "total_cost_100k": 1000.0,
+    "expected_improvement_100k": 2477.1888907235584,
+    "inference_time": 0.0004444122314453125
+  },
+  "gated": {
+    "auc": 0.5038595739971524,
+    "auc_improvement": 0.0038595739971524212,
+    "cost_per_prediction": 0.01,
+    "cost_benefit_ratio": 0.3859573997152421,
+    "total_cost_100k": 1000.0,
+    "expected_improvement_100k": 385.9573997152421,
+    "inference_time": 0.00025534629821777344
+  },
+  "simple_weighted": {
+    "auc": 0.5026765034823409,
+    "auc_improvement": 0.0026765034823409417,
+    "cost_per_prediction": 0.001,
+    "cost_benefit_ratio": 2.6765034823409417,
+    "total_cost_100k": 100.0,
+    "expected_improvement_100k": 267.65034823409417,
+    "inference_time": 0.0004935741424560546
+  },
+  "concatenation": {
+    "auc": 0.5032195801419668,
+    "auc_improvement": 0.0032195801419667713,
+    "cost_per_prediction": 0.001,
+    "cost_benefit_ratio": 3.2195801419667713,
+    "total_cost_100k": 100.0,
+    "expected_improvement_100k": 321.95801419667714,
+    "inference_time": 0.00021548271179199218
+  }
+}

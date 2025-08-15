@@ -1,0 +1,4 @@
+sentiment_decile,default_rate,count,avg_sentiment
+0,0.2006,8531,-0.0039
+1,0.2253,608,0.4341
+2,0.2125,861,0.7116
