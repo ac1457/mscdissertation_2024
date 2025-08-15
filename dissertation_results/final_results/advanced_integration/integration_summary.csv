@@ -1,0 +1,13 @@
+Regime,Approach,AUC,PR_AUC,AUC_Std
+target_5%,Late_Fusion,0.5507,0.1815,0.0441
+target_5%,Early_Fusion,0.5623,0.1860,0.0000
+target_5%,Attention_Fusion,0.5524,0.1819,0.0427
+target_5%,Feature_Selection,0.5610,0.1831,0.0116
+target_10%,Late_Fusion,0.5601,0.2302,0.0207
+target_10%,Early_Fusion,0.5617,0.2313,0.0000
+target_10%,Attention_Fusion,0.5600,0.2295,0.0201
+target_10%,Feature_Selection,0.5560,0.2264,0.0181
+target_15%,Late_Fusion,0.5384,0.2719,0.0105
+target_15%,Early_Fusion,0.5404,0.2689,0.0000
+target_15%,Attention_Fusion,0.5391,0.2722,0.0112
+target_15%,Feature_Selection,0.5372,0.2687,0.0161
