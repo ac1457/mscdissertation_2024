@@ -1,4 +1,0 @@
-Regime,Model,AUC,PR_AUC,Baseline_AUC,ΔAUC,Raw_p_label,Raw_p_feature,Meets_Practical_Threshold,Incremental_Defaults_Top10%,Brier_Improvement,ECE_Improvement,Calibration_Slope,Adjusted_p_label,Adjusted_p_feature
-target_5%,Hybrid,0.5229 ± 0.0331,0.1660 ± 0.0167,0.5177 ± 0.0255,0.0052,0.414,0.013,N,-29,0.0243,0.0908,0.1420,0.4140,0.0780
-target_10%,Hybrid,0.5239 ± 0.0114,0.2111 ± 0.0060,0.5101 ± 0.0113,0.0139,0.08,0.017,Y,-14,0.0312,0.1061,0.1986,0.2400,0.0850
-target_15%,Hybrid,0.5157 ± 0.0200,0.2567 ± 0.0189,0.4930 ± 0.0172,0.0227,0.054,0.133,Y,-16,0.0376,0.1300,1.0430,0.2160,0.2660

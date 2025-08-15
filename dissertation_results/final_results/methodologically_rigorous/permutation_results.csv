@@ -1,4 +1,0 @@
-Target,Label_Permutation_P,Feature_Permutation_P,Actual_AUC_Diff
-target_5%,0.096,0.003,0.011132372779668387
-target_10%,0.051,0.007,0.012169912163468855
-target_15%,0.048,0.062,0.016234266055074165
