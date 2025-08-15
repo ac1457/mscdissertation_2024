@@ -1,0 +1,12 @@
+Feature_Group,Average_AUC
+Sentiment_Interactions,0.5598794846522732
+Text_Complexity,0.5578134793453086
+Complexity_Plus_Sentiment,0.5564062797127628
+Entities_Plus_Sentiment,0.5551327873818569
+Traditional,0.5549666133429948
+Entities,0.5529093069731882
+Fine_Grained_Plus_Entities,0.5522338312323578
+All_Text_Features,0.5494231663093935
+Fine_Grained_Sentiment,0.5470544422092664
+Hybrid_Enhanced,0.5464715858707044
+Basic_Sentiment,0.5036827545388146

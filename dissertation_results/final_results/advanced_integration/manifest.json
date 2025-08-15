@@ -1,0 +1,18 @@
+{
+  "config": {
+    "min_practical_effect": 0.01,
+    "bootstrap_iterations": 1000,
+    "n_splits": 5,
+    "attention_heads": 4,
+    "attention_dim": 64,
+    "stacking_layers": 2
+  },
+  "timestamp": "2025-08-15T09:22:54.391596",
+  "approaches": [
+    "Late Fusion (concatenation)",
+    "Early Fusion (separate models)",
+    "Attention Fusion (weighted combination)",
+    "Model Stacking (meta-learner)",
+    "Feature Selection (best features)"
+  ]
+}
