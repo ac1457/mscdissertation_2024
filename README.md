@@ -8,7 +8,7 @@ This dissertation project provides a comprehensive, methodologically rigorous ev
 
 ## Key Contributions
 
-### Methodological Excellence
+### Methodology
 - **Rigorous statistical testing** with proper multiple comparison correction
 - **Temporal validation** to prevent data leakage
 - **Comprehensive baseline comparisons** (TF-IDF, lexicon, embeddings)
@@ -166,16 +166,15 @@ Academic use permitted. Please cite appropriately if using the methodology or co
 ## Author
 
 **Aadhira Chavan**  
-MSc Dissertation 2024  
+MSc Dissertation 2025
 Lending Club Sentiment Analysis for Credit Risk Modeling
 
 ---
 
-## Final Assessment
+## Limitations
 
-**Methodological Quality: EXCELLENT**  
+
 **Results Quality: HONESTLY NEGATIVE**  
-**Academic Contribution: SIGNIFICANT**  
 **Business Value: NOT DEMONSTRATED**
 
 **This project demonstrates that rigorous methodology and honest reporting of negative results are valuable contributions to the field, even when the primary hypothesis is not supported by the data.**
