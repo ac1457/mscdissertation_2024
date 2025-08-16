@@ -1,0 +1,366 @@
+{
+  "dataset_info": {
+    "shape": [
+      10000,
+      12
+    ],
+    "columns": [
+      "id",
+      "purpose",
+      "description",
+      "sentiment",
+      "sentiment_score",
+      "sentiment_confidence",
+      "text_length",
+      "word_count",
+      "sentence_count",
+      "has_positive_words",
+      "has_negative_words",
+      "has_financial_terms"
+    ],
+    "data_types": {
+      "id": "int64",
+      "purpose": "object",
+      "description": "object",
+      "sentiment": "object",
+      "sentiment_score": "float64",
+      "sentiment_confidence": "float64",
+      "text_length": "int64",
+      "word_count": "int64",
+      "sentence_count": "int64",
+      "has_positive_words": "int64",
+      "has_negative_words": "int64",
+      "has_financial_terms": "int64"
+    },
+    "memory_usage_mb": 3.9422264099121094
+  },
+  "text_analysis": {
+    "text_length_stats": {
+      "mean": 175.2676,
+      "std": 96.73339198618127,
+      "min": 24,
+      "max": 385,
+      "median": 195.0
+    },
+    "word_count_stats": {
+      "mean": 27.9718,
+      "std": 15.807219603053344,
+      "min": 4,
+      "max": 65,
+      "median": 31.0
+    },
+    "sentence_count_stats": {
+      "mean": 3.369,
+      "std": 1.6933770261153631,
+      "min": 1,
+      "max": 5,
+      "median": 4.0
+    }
+  },
+  "sentiment_analysis": {
+    "sentiment_distribution": {
+      "NEUTRAL": 4924,
+      "NEGATIVE": 3033,
+      "POSITIVE": 2043
+    },
+    "sentiment_percentages": {
+      "NEUTRAL": 49.24,
+      "NEGATIVE": 30.330000000000002,
+      "POSITIVE": 20.43
+    }
+  },
+  "feature_analysis": {
+    "id": {
+      "type": "numerical",
+      "mean": 5000.5,
+      "std": 2886.8956799071675,
+      "min": 1,
+      "max": 10000,
+      "median": 5000.5,
+      "missing_count": "0"
+    },
+    "purpose": {
+      "type": "categorical",
+      "unique_values": 5,
+      "top_values": {
+        "medical": 2030,
+        "education": 2024,
+        "debt_consolidation": 2003,
+        "home_improvement": 1977,
+        "business": 1966
+      },
+      "missing_count": "0"
+    },
+    "description": {
+      "type": "categorical",
+      "unique_values": 3607,
+      "top_values": {
+        "Looking to finance my education.": 132,
+        "Looking to consolidate multiple debts for better organization.": 124,
+        "Need capital for business development.": 123,
+        "Need loan for healthcare expenses.": 119,
+        "Need loan for education.": 110
+      },
+      "missing_count": "0"
+    },
+    "sentiment": {
+      "type": "categorical",
+      "unique_values": 3,
+      "top_values": {
+        "NEUTRAL": 4924,
+        "NEGATIVE": 3033,
+        "POSITIVE": 2043
+      },
+      "missing_count": "0"
+    },
+    "sentiment_score": {
+      "type": "numerical",
+      "mean": 0.5443036166543579,
+      "std": 0.07848618924277834,
+      "min": 0.3,
+      "max": 0.925,
+      "median": 0.5125,
+      "missing_count": "0"
+    },
+    "sentiment_confidence": {
+      "type": "numerical",
+      "mean": 0.7714391822414269,
+      "std": 0.10080439457824604,
+      "min": 0.6001617488731661,
+      "max": 0.94999181738606,
+      "median": 0.7703829239054097,
+      "missing_count": "0"
+    },
+    "text_length": {
+      "type": "numerical",
+      "mean": 175.2676,
+      "std": 96.73339198618127,
+      "min": 24,
+      "max": 385,
+      "median": 195.0,
+      "missing_count": "0"
+    },
+    "word_count": {
+      "type": "numerical",
+      "mean": 27.9718,
+      "std": 15.807219603053344,
+      "min": 4,
+      "max": 65,
+      "median": 31.0,
+      "missing_count": "0"
+    },
+    "sentence_count": {
+      "type": "numerical",
+      "mean": 3.369,
+      "std": 1.6933770261153631,
+      "min": 1,
+      "max": 5,
+      "median": 4.0,
+      "missing_count": "0"
+    },
+    "has_positive_words": {
+      "type": "numerical",
+      "mean": 0.3151,
+      "std": 0.46457892048318944,
+      "min": 0,
+      "max": 1,
+      "median": 0.0,
+      "missing_count": "0"
+    },
+    "has_negative_words": {
+      "type": "numerical",
+      "mean": 0.2464,
+      "std": 0.4309357383196269,
+      "min": 0,
+      "max": 1,
+      "median": 0.0,
+      "missing_count": "0"
+    },
+    "has_financial_terms": {
+      "type": "numerical",
+      "mean": 0.7718,
+      "std": 0.4196931906017011,
+      "min": 0,
+      "max": 1,
+      "median": 1.0,
+      "missing_count": "0"
+    }
+  },
+  "correlation_analysis": {
+    "correlation_matrix": {
+      "id": {
+        "id": 1.0,
+        "sentiment_score": -0.003148542626689017,
+        "sentiment_confidence": 0.003716097554525314,
+        "text_length": -0.007282410695173273,
+        "word_count": -0.006106026691926353,
+        "sentence_count": -0.004670042511846559,
+        "has_positive_words": -0.011651743962447681,
+        "has_negative_words": 0.01954978428190178,
+        "has_financial_terms": -0.0017613857620492504
+      },
+      "sentiment_score": {
+        "id": -0.003148542626689017,
+        "sentiment_score": 1.0,
+        "sentiment_confidence": 0.008490222492178264,
+        "text_length": 0.3437515932631843,
+        "word_count": 0.3493148447589041,
+        "sentence_count": 0.26381445454434177,
+        "has_positive_words": 0.5137507130688331,
+        "has_negative_words": -0.2704756847383396,
+        "has_financial_terms": 0.15160134934080222
+      },
+      "sentiment_confidence": {
+        "id": 0.003716097554525314,
+        "sentiment_score": 0.008490222492178264,
+        "sentiment_confidence": 1.0,
+        "text_length": 0.005334886838634582,
+        "word_count": 0.004700633059871444,
+        "sentence_count": 0.004119366090219894,
+        "has_positive_words": -0.019793343676118996,
+        "has_negative_words": -0.0013292082061586502,
+        "has_financial_terms": -0.0026063029338340826
+      },
+      "text_length": {
+        "id": -0.007282410695173273,
+        "sentiment_score": 0.3437515932631843,
+        "sentiment_confidence": 0.005334886838634582,
+        "text_length": 1.0,
+        "word_count": 0.9944410809269625,
+        "sentence_count": 0.9671678580467226,
+        "has_positive_words": 0.4902278105806962,
+        "has_negative_words": 0.15029286933342464,
+        "has_financial_terms": 0.7503560046753813
+      },
+      "word_count": {
+        "id": -0.006106026691926353,
+        "sentiment_score": 0.3493148447589041,
+        "sentiment_confidence": 0.004700633059871444,
+        "text_length": 0.9944410809269625,
+        "word_count": 1.0,
+        "sentence_count": 0.9585464647591667,
+        "has_positive_words": 0.4882748337859636,
+        "has_negative_words": 0.13965915440449975,
+        "has_financial_terms": 0.7424663668647953
+      },
+      "sentence_count": {
+        "id": -0.004670042511846559,
+        "sentiment_score": 0.26381445454434177,
+        "sentiment_confidence": 0.004119366090219894,
+        "text_length": 0.9671678580467226,
+        "word_count": 0.9585464647591667,
+        "sentence_count": 1.0,
+        "has_positive_words": 0.4609902309464804,
+        "has_negative_words": 0.10070173350106479,
+        "has_financial_terms": 0.7607440179653097
+      },
+      "has_positive_words": {
+        "id": -0.011651743962447681,
+        "sentiment_score": 0.5137507130688331,
+        "sentiment_confidence": -0.019793343676118996,
+        "text_length": 0.4902278105806962,
+        "word_count": 0.4882748337859636,
+        "sentence_count": 0.4609902309464804,
+        "has_positive_words": 1.0,
+        "has_negative_words": -0.2959314761031488,
+        "has_financial_terms": 0.3467656679189998
+      },
+      "has_negative_words": {
+        "id": 0.01954978428190178,
+        "sentiment_score": -0.2704756847383396,
+        "sentiment_confidence": -0.0013292082061586502,
+        "text_length": 0.15029286933342464,
+        "word_count": 0.13965915440449975,
+        "sentence_count": 0.10070173350106479,
+        "has_positive_words": -0.2959314761031488,
+        "has_negative_words": 1.0,
+        "has_financial_terms": 0.12181016385127834
+      },
+      "has_financial_terms": {
+        "id": -0.0017613857620492504,
+        "sentiment_score": 0.15160134934080222,
+        "sentiment_confidence": -0.0026063029338340826,
+        "text_length": 0.7503560046753813,
+        "word_count": 0.7424663668647953,
+        "sentence_count": 0.7607440179653097,
+        "has_positive_words": 0.3467656679189998,
+        "has_negative_words": 0.12181016385127834,
+        "has_financial_terms": 1.0
+      }
+    },
+    "high_correlations": [
+      {
+        "feature1": "text_length",
+        "feature2": "word_count",
+        "correlation": 0.9944410809269625
+      },
+      {
+        "feature1": "text_length",
+        "feature2": "sentence_count",
+        "correlation": 0.9671678580467226
+      },
+      {
+        "feature1": "text_length",
+        "feature2": "has_financial_terms",
+        "correlation": 0.7503560046753813
+      },
+      {
+        "feature1": "word_count",
+        "feature2": "sentence_count",
+        "correlation": 0.9585464647591667
+      },
+      {
+        "feature1": "word_count",
+        "feature2": "has_financial_terms",
+        "correlation": 0.7424663668647953
+      },
+      {
+        "feature1": "sentence_count",
+        "feature2": "has_financial_terms",
+        "correlation": 0.7607440179653097
+      }
+    ],
+    "numerical_features": [
+      "id",
+      "sentiment_score",
+      "sentiment_confidence",
+      "text_length",
+      "word_count",
+      "sentence_count",
+      "has_positive_words",
+      "has_negative_words",
+      "has_financial_terms"
+    ]
+  },
+  "missing_data_analysis": {
+    "missing_counts": {
+      "id": 0,
+      "purpose": 0,
+      "description": 0,
+      "sentiment": 0,
+      "sentiment_score": 0,
+      "sentiment_confidence": 0,
+      "text_length": 0,
+      "word_count": 0,
+      "sentence_count": 0,
+      "has_positive_words": 0,
+      "has_negative_words": 0,
+      "has_financial_terms": 0
+    },
+    "missing_percentages": {
+      "id": 0.0,
+      "purpose": 0.0,
+      "description": 0.0,
+      "sentiment": 0.0,
+      "sentiment_score": 0.0,
+      "sentiment_confidence": 0.0,
+      "text_length": 0.0,
+      "word_count": 0.0,
+      "sentence_count": 0.0,
+      "has_positive_words": 0.0,
+      "has_negative_words": 0.0,
+      "has_financial_terms": 0.0
+    },
+    "columns_with_missing": []
+  }
+}
