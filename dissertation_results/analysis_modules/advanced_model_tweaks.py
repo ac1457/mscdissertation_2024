@@ -47,49 +47,20 @@ class AdvancedModelTweaks:
         print("=" * 60)
         
         # Load data
-        df = self.load_and_preprocess_data()
-        if df is None:
-            return
-        
-        # Create enhanced features
-        df = self.create_enhanced_features(df)
-        
-        # Run simpler fusion comparison
-        fusion_results = self.compare_fusion_methods(df)
-        
-        # Run hyperparameter sensitivity analysis
-        hyperparameter_results = self.hyperparameter_sensitivity_analysis(df)
-        
-        # Quantify marginal costs and ROI
-        cost_analysis = self.quantify_marginal_costs(df, fusion_results)
-        
-        # Visualize sentiment-risk correlation
-        correlation_results = self.visualize_sentiment_risk_correlation(df)
-        
-        # Save comprehensive results
-        self.save_tweaks_results(fusion_results, hyperparameter_results, cost_analysis, correlation_results)
-        
-        return fusion_results, hyperparameter_results, cost_analysis, correlation_results
-    
-    def load_and_preprocess_data(self):
-        """Load and preprocess data"""
         try:
-            df = pd.read_csv('data/synthetic_loan_descriptions_with_realistic_targets.csv')
+            # Try to load real data first, fall back to synthetic if not available
+            try:
+                df = pd.read_csv('data/real_lending_club/real_lending_club_processed.csv')
+                print(f"Loaded REAL Lending Club dataset: {len(df)} records")
+            except FileNotFoundError:
+                df = pd.read_csv('data/synthetic_loan_descriptions_with_realistic_targets.csv')
+                print(f"Using SYNTHETIC data (real data not found): {len(df)} records")
             
-            # Add temporal ordering
-            np.random.seed(self.random_state)
-            df['origination_date'] = pd.date_range(
-                start='2020-01-01', 
-                periods=len(df), 
-                freq='D'
-            )
-            df = df.sort_values('origination_date').reset_index(drop=True)
-            
-            print(f"Loaded dataset: {len(df)} records")
+            print(f"Dataset loaded: {len(df)} records, {len(df.columns)} columns")
             return df
             
         except FileNotFoundError:
-            print("Dataset not found")
+            print("No dataset found. Please run real data processing first.")
             return None
     
     def create_enhanced_features(self, df):
