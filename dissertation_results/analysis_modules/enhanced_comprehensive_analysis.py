@@ -202,25 +202,34 @@ class EnhancedComprehensiveAnalysis:
         return all_results, ablation_results
 
     def load_and_preprocess_data(self):
-        """Load and preprocess data with enhanced cleaning"""
+        """Load and preprocess data"""
         try:
-            df = pd.read_csv('data/synthetic_loan_descriptions_with_realistic_targets.csv')
+            # Try to load real data first, fall back to synthetic if not available
+            try:
+                df = pd.read_csv('data/real_lending_club/real_lending_club_processed.csv')
+                print(f"Loaded REAL Lending Club dataset: {len(df)} records")
+            except FileNotFoundError:
+                # Fall back to synthetic data if real data not available
+                df = pd.read_csv('data/synthetic_loan_descriptions_with_realistic_targets.csv')
+                print(f"Using SYNTHETIC data (real data not found): {len(df)} records")
             
             # Add temporal ordering
             np.random.seed(self.random_state)
+            # Use a more reasonable date range for real data
+            start_date = pd.Timestamp('2010-01-01')
+            end_date = pd.Timestamp('2018-12-31')
             df['origination_date'] = pd.date_range(
-                start='2020-01-01', 
-                periods=len(df), 
-                freq='D'
+                start=start_date, 
+                end=end_date, 
+                periods=len(df)
             )
             df = df.sort_values('origination_date').reset_index(drop=True)
             
             print(f"Loaded dataset: {len(df)} records")
-            print(f"   Date range: {df['origination_date'].min().date()} to {df['origination_date'].max().date()}")
-            
             return df
+            
         except FileNotFoundError:
-            print("Dataset not found")
+            print("No dataset found. Please run real data processing first.")
             return None
 
     def advanced_text_preprocessing(self, df):

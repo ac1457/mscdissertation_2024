@@ -43,52 +43,20 @@ class DecisionThresholdAnalysis:
         print("=" * 60)
         
         # Load data
-        df = self.load_and_preprocess_data()
-        if df is None:
-            return
-        
-        # Create enhanced features
-        df = self.create_enhanced_features(df)
-        
-        # Analyze decision thresholds for text features
-        threshold_results = self.analyze_text_feature_thresholds(df)
-        
-        # Analyze feature importance at different thresholds
-        importance_results = self.analyze_feature_importance_at_thresholds(df)
-        
-        # Create interpretable decision rules
-        decision_rules = self.create_interpretable_decision_rules(df)
-        
-        # Analyze threshold stability and robustness
-        stability_results = self.analyze_threshold_stability(df)
-        
-        # Create comprehensive visualizations
-        self.create_threshold_visualizations(threshold_results, importance_results, decision_rules)
-        
-        # Save comprehensive results
-        self.save_threshold_results(threshold_results, importance_results, decision_rules, stability_results)
-        
-        return threshold_results, importance_results, decision_rules, stability_results
-    
-    def load_and_preprocess_data(self):
-        """Load and preprocess data"""
         try:
-            df = pd.read_csv('data/synthetic_loan_descriptions_with_realistic_targets.csv')
+            # Try to load real data first, fall back to synthetic if not available
+            try:
+                df = pd.read_csv('data/real_lending_club/real_lending_club_processed.csv')
+                print(f"Loaded REAL Lending Club dataset: {len(df)} records")
+            except FileNotFoundError:
+                df = pd.read_csv('data/synthetic_loan_descriptions_with_realistic_targets.csv')
+                print(f"Using SYNTHETIC data (real data not found): {len(df)} records")
             
-            # Add temporal ordering
-            np.random.seed(self.random_state)
-            df['origination_date'] = pd.date_range(
-                start='2020-01-01', 
-                periods=len(df), 
-                freq='D'
-            )
-            df = df.sort_values('origination_date').reset_index(drop=True)
-            
-            print(f"Loaded dataset: {len(df)} records")
+            print(f"Dataset loaded: {len(df)} records, {len(df.columns)} columns")
             return df
             
         except FileNotFoundError:
-            print("Dataset not found")
+            print("No dataset found. Please run real data processing first.")
             return None
     
     def create_enhanced_features(self, df):

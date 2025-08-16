@@ -1,4 +1,1 @@
-Regime,Best_Model,Baseline_Model,Best_AUC,Baseline_AUC,Delta_AUC,Meets_Practical_Threshold
-target_5%,Sentiment_Interactions,Traditional,0.5635,0.5581,0.0054,N
-target_10%,Text_Complexity,Traditional,0.5696,0.5657,0.0039,N
-target_15%,Sentiment_Interactions,Traditional,0.5494,0.5412,0.0082,N
+

@@ -16,34 +16,8 @@
       "stability"
     ]
   },
-  "correction_results": {
-    "original_p_values": [
-      0.548,
-      0.0,
-      0.106,
-      0.0,
-      0.016,
-      0.0
-    ],
-    "corrected_p_values": [
-      0.548,
-      0.0,
-      0.212,
-      0.0,
-      0.048,
-      0.0
-    ],
-    "rejected": [
-      false,
-      true,
-      false,
-      true,
-      true,
-      true
-    ],
-    "method": "holm"
-  },
-  "timestamp": "2025-08-15T09:03:24.108939",
+  "correction_results": null,
+  "timestamp": "2025-08-16T23:03:17.261918",
   "enhancements": [
     "Advanced text preprocessing with lemmatization",
     "Entity extraction for financial indicators",

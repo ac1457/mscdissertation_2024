@@ -94,10 +94,21 @@ class AdvancedModelIntegration:
             enhanced_file = Path('final_results/enhanced_comprehensive/enhanced_results.json')
             if enhanced_file.exists():
                 print("Loading enhanced data from previous analysis...")
-                # For now, reload the original data and recreate features
-                df = pd.read_csv('data/synthetic_loan_descriptions_with_realistic_targets.csv')
+                # Try to load real data first, fall back to synthetic if not available
+                try:
+                    df = pd.read_csv('data/real_lending_club/real_lending_club_processed.csv')
+                    print(f"✅ Loaded REAL Lending Club dataset: {len(df)} records")
+                except FileNotFoundError:
+                    df = pd.read_csv('data/synthetic_loan_descriptions_with_realistic_targets.csv')
+                    print(f"⚠️  Using SYNTHETIC data (real data not found): {len(df)} records")
             else:
-                df = pd.read_csv('data/synthetic_loan_descriptions_with_realistic_targets.csv')
+                # Try to load real data first, fall back to synthetic if not available
+                try:
+                    df = pd.read_csv('data/real_lending_club/real_lending_club_processed.csv')
+                    print(f"✅ Loaded REAL Lending Club dataset: {len(df)} records")
+                except FileNotFoundError:
+                    df = pd.read_csv('data/synthetic_loan_descriptions_with_realistic_targets.csv')
+                    print(f"⚠️  Using SYNTHETIC data (real data not found): {len(df)} records")
             
             # Add temporal ordering
             np.random.seed(self.random_state)

@@ -1,7 +1,6 @@
 # Hyperparameter Sensitivity Analysis Summary
 ## Comprehensive Documentation of Performance Variations
 
-**Date:** August 2025  
 **Analysis:** Attention Heads and FinBERT Layer Selection Sensitivity
 
 ---

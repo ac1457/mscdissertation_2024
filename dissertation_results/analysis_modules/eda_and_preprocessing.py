@@ -64,9 +64,15 @@ class EDAAndPreprocessing:
         """Load and perform initial data exploration"""
         print("Loading and exploring data...")
         
+        # Load synthetic loan descriptions
         try:
-            # Load synthetic loan descriptions
-            df = pd.read_csv('data/synthetic_loan_descriptions.csv')
+            # Try to load real data first, fall back to synthetic if not available
+            try:
+                df = pd.read_csv('data/real_lending_club/real_lending_club_processed.csv')
+                print(f"Loaded REAL Lending Club dataset: {len(df)} records")
+            except FileNotFoundError:
+                df = pd.read_csv('data/synthetic_loan_descriptions.csv')
+                print(f"Using SYNTHETIC data (real data not found): {len(df)} records")
             
             print(f"Dataset loaded: {len(df)} records, {len(df.columns)} columns")
             print(f"Columns: {list(df.columns)}")
@@ -85,7 +91,7 @@ class EDAAndPreprocessing:
             return df
             
         except FileNotFoundError:
-            print("Dataset not found")
+            print("No dataset found. Please run real data processing first.")
             return None
     
     def perform_comprehensive_eda(self, df):
