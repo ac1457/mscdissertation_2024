@@ -1,0 +1,11 @@
+Metric,Value
+Total Records,"97,020"
+Total Features,167
+Numerical Features,128
+Categorical Features,39
+Text Features,4
+Missing Values (%),0.60
+Default Rate (%),13.1
+Average Loan Amount ($),"15,176"
+Average Annual Income ($),"78,343"
+Average Interest Rate (%),13.14
