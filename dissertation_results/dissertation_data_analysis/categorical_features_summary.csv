@@ -1,0 +1,39 @@
+,unique_values,missing_values,missing_percentage,most_common
+term,2,0,0.0, 36 months
+grade,7,0,0.0,C
+sub_grade,35,0,0.0,C1
+emp_title,38761,0,0.0,Teacher
+emp_length,11,0,0.0,10+ years
+home_ownership,6,0,0.0,MORTGAGE
+verification_status,3,0,0.0,Source Verified
+issue_d,79,0,0.0,Mar-2016
+loan_status,6,0,0.0,Fully Paid
+pymnt_plan,2,0,0.0,n
+url,97020,0,0.0,https://lendingclub.com/browse/loanDetail.action?loan_id=100001365
+desc,3535,0,0.0, 
+purpose,13,0,0.0,debt_consolidation
+title,2818,0,0.0,Debt consolidation
+zip_code,874,0,0.0,112xx
+addr_state,51,0,0.0,CA
+earliest_cr_line,643,0,0.0,Sep-2003
+initial_list_status,2,0,0.0,w
+last_pymnt_d,78,0,0.0,Mar-2019
+next_pymnt_d,3,0,0.0,Apr-2019
+last_credit_pull_d,77,0,0.0,Mar-2019
+application_type,2,0,0.0,Individual
+verification_status_joint,3,0,0.0,Not Verified
+sec_app_earliest_cr_line,475,0,0.0,Aug-2005
+hardship_flag,2,0,0.0,N
+hardship_type,1,0,0.0,INTEREST ONLY-3 MONTHS DEFERRAL
+hardship_reason,9,0,0.0,NATURAL_DISASTER
+hardship_status,3,0,0.0,COMPLETED
+hardship_start_date,24,0,0.0,Sep-2017
+hardship_end_date,25,0,0.0,Dec-2017
+payment_plan_start_date,25,0,0.0,Sep-2017
+hardship_loan_status,5,0,0.0,Late (16-30 days)
+disbursement_method,2,0,0.0,Cash
+debt_settlement_flag,2,0,0.0,N
+debt_settlement_flag_date,54,0,0.0,Jan-2019
+settlement_status,3,0,0.0,COMPLETE
+settlement_date,60,0,0.0,Jan-2019
+description,3535,0,0.0, 

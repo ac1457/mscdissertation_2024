@@ -1,0 +1,8 @@
+Category,Features,Count
+Demographic,"age, annual_inc, emp_length, home_ownership, addr_state",16
+Financial,"loan_amnt, funded_amnt, int_rate, installment, dti",10
+Credit History,"fico_range_low, fico_range_high, open_acc, pub_rec, inq_last_6mths",21
+Loan Characteristics,"purpose, term, grade, sub_grade, verification_status",9
+Text Features,"text_length, word_count, sentence_count, avg_word_length",9
+Sentiment Features,"sentiment_score, sentiment_confidence, sentiment, has_financial_terms",3
+Interaction Features,"sentiment_text_interaction, sentiment_word_interaction",0
