@@ -1,0 +1,1310 @@
+{
+  "concept_drift_monitoring": {
+    "baseline_stats": {
+      "sentiment_score": {
+        "mean": -0.0019483025926366933,
+        "std": 0.5772468164711259,
+        "median": -0.002228790991414,
+        "q25": -0.5024892061936381,
+        "q75": 0.4978945097776085,
+        "distribution": "[-0.25091976  0.90142861  0.46398788 ... -0.57397796 -0.09763691\n  0.84728846]",
+        "sample_size": 48510
+      },
+      "text_length": {
+        "mean": 7.256751185322614,
+        "std": 38.828373720571435,
+        "median": 1.0,
+        "q25": 1.0,
+        "q75": 1.0,
+        "distribution": "[1 1 1 ... 1 1 1]",
+        "sample_size": 48510
+      },
+      "word_count": {
+        "mean": 1.1187177901463616,
+        "std": 7.078360191602327,
+        "median": 0.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "distribution": "[0 0 0 ... 0 0 0]",
+        "sample_size": 48510
+      },
+      "financial_keyword_count": {
+        "mean": 0.07285095856524428,
+        "std": 0.4879243240526534,
+        "median": 0.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "distribution": "[0 0 0 ... 0 0 0]",
+        "sample_size": 48510
+      },
+      "sentiment_balance": {
+        "mean": -0.008286951144094001,
+        "std": 0.1504950461087658,
+        "median": 0.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "distribution": "[0 0 0 ... 0 0 0]",
+        "sample_size": 48510
+      },
+      "avg_word_length": {
+        "mean": 0.1765913398855784,
+        "std": 0.9178167250864219,
+        "median": 0.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "distribution": "[0. 0. 0. ... 0. 0. 0.]",
+        "sample_size": 48510
+      }
+    },
+    "drift_results": {
+      "sentiment_score": {
+        "feature": "sentiment_score",
+        "ks_statistic": 0.00612244897959191,
+        "p_value": 0.3218947809552366,
+        "significant_drift": "False",
+        "mean_drift": 0.005106232039662427,
+        "std_drift": 0.0013236387014213516,
+        "reference_mean": -0.0019483025926366933,
+        "new_mean": 0.000999253596421306,
+        "reference_std": 0.5772468164711259,
+        "new_std": 0.5764827502445724,
+        "sample_size": 48510
+      },
+      "text_length": {
+        "feature": "text_length",
+        "ks_statistic": 0.0019583591012162227,
+        "p_value": 0.9999843920841117,
+        "significant_drift": "False",
+        "mean_drift": 0.008552401989253389,
+        "std_drift": 0.04821843533043235,
+        "reference_mean": 7.256751185322614,
+        "new_mean": 6.9246753246753245,
+        "reference_std": 38.828373720571435,
+        "new_std": 36.9561302933402,
+        "sample_size": 48510
+      },
+      "word_count": {
+        "feature": "word_count",
+        "ks_statistic": 0.002020202020202033,
+        "p_value": 0.9999666114772844,
+        "significant_drift": "False",
+        "mean_drift": 0.009598939841977547,
+        "std_drift": 0.053669377567624105,
+        "reference_mean": 1.1187177901463616,
+        "new_mean": 1.0507730364873222,
+        "reference_std": 7.078360191602327,
+        "new_std": 6.6984690059195815,
+        "sample_size": 48510
+      },
+      "financial_keyword_count": {
+        "feature": "financial_keyword_count",
+        "ks_statistic": 0.0016697588126158847,
+        "p_value": 0.9999998671043767,
+        "significant_drift": "False",
+        "mean_drift": 0.007140078077263678,
+        "std_drift": 0.03350774975842797,
+        "reference_mean": 0.07285095856524428,
+        "new_mean": 0.06936714079571223,
+        "reference_std": 0.4879243240526534,
+        "new_std": 0.471575077901247,
+        "sample_size": 48510
+      },
+      "sentiment_balance": {
+        "feature": "sentiment_balance",
+        "ks_statistic": 0.000886415172129458,
+        "p_value": 1.0,
+        "significant_drift": "False",
+        "mean_drift": 0.0016437197259258922,
+        "std_drift": 0.07558260629046026,
+        "reference_mean": -0.008286951144094001,
+        "new_mean": -0.008039579468150896,
+        "reference_std": 0.1504950461087658,
+        "new_std": 0.1391202382900623,
+        "sample_size": 48510
+      },
+      "avg_word_length": {
+        "feature": "avg_word_length",
+        "ks_statistic": 0.0021026592455164472,
+        "p_value": 0.9999171334485251,
+        "significant_drift": "False",
+        "mean_drift": 0.0022203538493899264,
+        "std_drift": 0.011013519894928634,
+        "reference_mean": 0.1765913398855784,
+        "new_mean": 0.1786292177841585,
+        "reference_std": 0.9178167250864219,
+        "new_std": 0.9279251178480594,
+        "sample_size": 48510
+      }
+    },
+    "drift_timeline": [],
+    "alerts": [],
+    "summary": {
+      "total_features_monitored": 7,
+      "features_with_drift": 0,
+      "total_alerts": 0,
+      "high_severity_alerts": 0
+    }
+  },
+  "counterfactual_fairness": {
+    "counterfactual_fairness": {
+      "grade": {
+        "avg_prediction_change": 0.12177521554732379,
+        "max_prediction_change": 0.30000000000000004,
+        "significant_changes": 21,
+        "total_tests": 21,
+        "counterfactual_tests": [
+          {
+            "original_value": "B",
+            "target_value": "C",
+            "avg_prediction_change": 0.048745788201398736,
+            "max_prediction_change": 0.050000000000000044,
+            "std_prediction_change": 0.006393224184489634,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 28296
+          },
+          {
+            "original_value": "B",
+            "target_value": "A",
+            "avg_prediction_change": 0.04876130042646483,
+            "max_prediction_change": 0.050000000000000044,
+            "std_prediction_change": 0.006308597181894495,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 28296
+          },
+          {
+            "original_value": "B",
+            "target_value": "E",
+            "avg_prediction_change": 0.13894470950529658,
+            "max_prediction_change": 0.15000000000000002,
+            "std_prediction_change": 0.03141992176825155,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 28296
+          },
+          {
+            "original_value": "B",
+            "target_value": "D",
+            "avg_prediction_change": 0.09507237079380146,
+            "max_prediction_change": 0.1,
+            "std_prediction_change": 0.017525148462028146,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 28296
+          },
+          {
+            "original_value": "B",
+            "target_value": "F",
+            "avg_prediction_change": 0.1802900349011628,
+            "max_prediction_change": 0.20000000000000007,
+            "std_prediction_change": 0.047310119452383434,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 28296
+          },
+          {
+            "original_value": "B",
+            "target_value": "G",
+            "avg_prediction_change": 0.2191512305101247,
+            "max_prediction_change": 0.25,
+            "std_prediction_change": 0.06466869107492718,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 28296
+          },
+          {
+            "original_value": "C",
+            "target_value": "A",
+            "avg_prediction_change": 0.09501472509230406,
+            "max_prediction_change": 0.1,
+            "std_prediction_change": 0.01748713428935644,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 28323
+          },
+          {
+            "original_value": "C",
+            "target_value": "E",
+            "avg_prediction_change": 0.09516636645124697,
+            "max_prediction_change": 0.1,
+            "std_prediction_change": 0.017193953779164772,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 28323
+          },
+          {
+            "original_value": "C",
+            "target_value": "D",
+            "avg_prediction_change": 0.04882145649987833,
+            "max_prediction_change": 0.050000000000000044,
+            "std_prediction_change": 0.0061243993957358425,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 28323
+          },
+          {
+            "original_value": "C",
+            "target_value": "F",
+            "avg_prediction_change": 0.1390089761391206,
+            "max_prediction_change": 0.15000000000000002,
+            "std_prediction_change": 0.031112674463943075,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 28323
+          },
+          {
+            "original_value": "C",
+            "target_value": "G",
+            "avg_prediction_change": 0.18035258161539938,
+            "max_prediction_change": 0.20000000000000007,
+            "std_prediction_change": 0.04704828593667885,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 28323
+          },
+          {
+            "original_value": "A",
+            "target_value": "E",
+            "avg_prediction_change": 0.18013965863596546,
+            "max_prediction_change": 0.20000000000000007,
+            "std_prediction_change": 0.04730554720747844,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 18228
+          },
+          {
+            "original_value": "A",
+            "target_value": "D",
+            "avg_prediction_change": 0.13888773059556217,
+            "max_prediction_change": 0.15000000000000002,
+            "std_prediction_change": 0.03133159738106579,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 18228
+          },
+          {
+            "original_value": "A",
+            "target_value": "F",
+            "avg_prediction_change": 0.21881957841043134,
+            "max_prediction_change": 0.25,
+            "std_prediction_change": 0.06473139970525181,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 18228
+          },
+          {
+            "original_value": "A",
+            "target_value": "G",
+            "avg_prediction_change": 0.25486571113624423,
+            "max_prediction_change": 0.30000000000000004,
+            "std_prediction_change": 0.08318148735498021,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 18228
+          },
+          {
+            "original_value": "E",
+            "target_value": "D",
+            "avg_prediction_change": 0.04883119188792048,
+            "max_prediction_change": 0.050000000000000044,
+            "std_prediction_change": 0.006220925352717837,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 5834
+          },
+          {
+            "original_value": "E",
+            "target_value": "F",
+            "avg_prediction_change": 0.048751554417481524,
+            "max_prediction_change": 0.050000000000000044,
+            "std_prediction_change": 0.006299913303951467,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 5834
+          },
+          {
+            "original_value": "E",
+            "target_value": "G",
+            "avg_prediction_change": 0.09490162292358882,
+            "max_prediction_change": 0.1,
+            "std_prediction_change": 0.017619038955360586,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 5834
+          },
+          {
+            "original_value": "D",
+            "target_value": "F",
+            "avg_prediction_change": 0.09510680330029926,
+            "max_prediction_change": 0.09999999999999999,
+            "std_prediction_change": 0.017319623299623128,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 14028
+          },
+          {
+            "original_value": "D",
+            "target_value": "G",
+            "avg_prediction_change": 0.13892340290016486,
+            "max_prediction_change": 0.15000000000000002,
+            "std_prediction_change": 0.0312900130222367,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 14028
+          },
+          {
+            "original_value": "F",
+            "target_value": "G",
+            "avg_prediction_change": 0.048722732149943014,
+            "max_prediction_change": 0.050000000000000044,
+            "std_prediction_change": 0.006552737295445953,
+            "significant_change": "True",
+            "p_value": 0.0,
+            "sample_size": 1781
+          }
+        ]
+      },
+      "home_ownership": {
+        "avg_prediction_change": 0.0,
+        "max_prediction_change": 0.0,
+        "significant_changes": 0,
+        "total_tests": 15,
+        "counterfactual_tests": [
+          {
+            "original_value": "MORTGAGE",
+            "target_value": "RENT",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 47473
+          },
+          {
+            "original_value": "MORTGAGE",
+            "target_value": "OWN",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 47473
+          },
+          {
+            "original_value": "MORTGAGE",
+            "target_value": "ANY",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 47473
+          },
+          {
+            "original_value": "MORTGAGE",
+            "target_value": "NONE",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 47473
+          },
+          {
+            "original_value": "MORTGAGE",
+            "target_value": "OTHER",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 47473
+          },
+          {
+            "original_value": "RENT",
+            "target_value": "OWN",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38465
+          },
+          {
+            "original_value": "RENT",
+            "target_value": "ANY",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38465
+          },
+          {
+            "original_value": "RENT",
+            "target_value": "NONE",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38465
+          },
+          {
+            "original_value": "RENT",
+            "target_value": "OTHER",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38465
+          },
+          {
+            "original_value": "OWN",
+            "target_value": "ANY",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 11029
+          },
+          {
+            "original_value": "OWN",
+            "target_value": "NONE",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 11029
+          },
+          {
+            "original_value": "OWN",
+            "target_value": "OTHER",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 11029
+          },
+          {
+            "original_value": "ANY",
+            "target_value": "NONE",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 45
+          },
+          {
+            "original_value": "ANY",
+            "target_value": "OTHER",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 45
+          },
+          {
+            "original_value": "NONE",
+            "target_value": "OTHER",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 4
+          }
+        ]
+      },
+      "emp_length": {
+        "avg_prediction_change": 0.0,
+        "max_prediction_change": 0.0,
+        "significant_changes": 0,
+        "total_tests": 55,
+        "counterfactual_tests": [
+          {
+            "original_value": "10+ years",
+            "target_value": "4 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38778
+          },
+          {
+            "original_value": "10+ years",
+            "target_value": "5 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38778
+          },
+          {
+            "original_value": "10+ years",
+            "target_value": "8 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38778
+          },
+          {
+            "original_value": "10+ years",
+            "target_value": "7 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38778
+          },
+          {
+            "original_value": "10+ years",
+            "target_value": "2 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38778
+          },
+          {
+            "original_value": "10+ years",
+            "target_value": "1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38778
+          },
+          {
+            "original_value": "10+ years",
+            "target_value": "< 1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38778
+          },
+          {
+            "original_value": "10+ years",
+            "target_value": "9 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38778
+          },
+          {
+            "original_value": "10+ years",
+            "target_value": "6 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38778
+          },
+          {
+            "original_value": "10+ years",
+            "target_value": "3 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 38778
+          },
+          {
+            "original_value": "4 years",
+            "target_value": "5 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 5796
+          },
+          {
+            "original_value": "4 years",
+            "target_value": "8 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 5796
+          },
+          {
+            "original_value": "4 years",
+            "target_value": "7 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 5796
+          },
+          {
+            "original_value": "4 years",
+            "target_value": "2 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 5796
+          },
+          {
+            "original_value": "4 years",
+            "target_value": "1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 5796
+          },
+          {
+            "original_value": "4 years",
+            "target_value": "< 1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 5796
+          },
+          {
+            "original_value": "4 years",
+            "target_value": "9 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 5796
+          },
+          {
+            "original_value": "4 years",
+            "target_value": "6 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 5796
+          },
+          {
+            "original_value": "4 years",
+            "target_value": "3 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 5796
+          },
+          {
+            "original_value": "5 years",
+            "target_value": "8 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6003
+          },
+          {
+            "original_value": "5 years",
+            "target_value": "7 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6003
+          },
+          {
+            "original_value": "5 years",
+            "target_value": "2 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6003
+          },
+          {
+            "original_value": "5 years",
+            "target_value": "1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6003
+          },
+          {
+            "original_value": "5 years",
+            "target_value": "< 1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6003
+          },
+          {
+            "original_value": "5 years",
+            "target_value": "9 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6003
+          },
+          {
+            "original_value": "5 years",
+            "target_value": "6 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6003
+          },
+          {
+            "original_value": "5 years",
+            "target_value": "3 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6003
+          },
+          {
+            "original_value": "8 years",
+            "target_value": "7 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 3895
+          },
+          {
+            "original_value": "8 years",
+            "target_value": "2 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 3895
+          },
+          {
+            "original_value": "8 years",
+            "target_value": "1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 3895
+          },
+          {
+            "original_value": "8 years",
+            "target_value": "< 1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 3895
+          },
+          {
+            "original_value": "8 years",
+            "target_value": "9 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 3895
+          },
+          {
+            "original_value": "8 years",
+            "target_value": "6 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 3895
+          },
+          {
+            "original_value": "8 years",
+            "target_value": "3 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 3895
+          },
+          {
+            "original_value": "7 years",
+            "target_value": "2 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 4030
+          },
+          {
+            "original_value": "7 years",
+            "target_value": "1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 4030
+          },
+          {
+            "original_value": "7 years",
+            "target_value": "< 1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 4030
+          },
+          {
+            "original_value": "7 years",
+            "target_value": "9 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 4030
+          },
+          {
+            "original_value": "7 years",
+            "target_value": "6 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 4030
+          },
+          {
+            "original_value": "7 years",
+            "target_value": "3 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 4030
+          },
+          {
+            "original_value": "2 years",
+            "target_value": "1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 8712
+          },
+          {
+            "original_value": "2 years",
+            "target_value": "< 1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 8712
+          },
+          {
+            "original_value": "2 years",
+            "target_value": "9 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 8712
+          },
+          {
+            "original_value": "2 years",
+            "target_value": "6 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 8712
+          },
+          {
+            "original_value": "2 years",
+            "target_value": "3 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 8712
+          },
+          {
+            "original_value": "1 year",
+            "target_value": "< 1 year",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6349
+          },
+          {
+            "original_value": "1 year",
+            "target_value": "9 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6349
+          },
+          {
+            "original_value": "1 year",
+            "target_value": "6 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6349
+          },
+          {
+            "original_value": "1 year",
+            "target_value": "3 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 6349
+          },
+          {
+            "original_value": "< 1 year",
+            "target_value": "9 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 8047
+          },
+          {
+            "original_value": "< 1 year",
+            "target_value": "6 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 8047
+          },
+          {
+            "original_value": "< 1 year",
+            "target_value": "3 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 8047
+          },
+          {
+            "original_value": "9 years",
+            "target_value": "6 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 3421
+          },
+          {
+            "original_value": "9 years",
+            "target_value": "3 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 3421
+          },
+          {
+            "original_value": "6 years",
+            "target_value": "3 years",
+            "avg_prediction_change": 0.0,
+            "max_prediction_change": 0.0,
+            "std_prediction_change": 0.0,
+            "significant_change": "False",
+            "p_value": NaN,
+            "sample_size": 4277
+          }
+        ]
+      }
+    },
+    "individual_fairness": {
+      "consistency_score": NaN,
+      "avg_similarity": NaN,
+      "avg_prediction_diff": 0.3382593897586426,
+      "high_similarity_consistency": NaN,
+      "similarity_distribution": "count    0.0\nmean     NaN\nstd      NaN\nmin      NaN\n25%      NaN\n50%      NaN\n75%      NaN\nmax      NaN\nName: similarity, dtype: float64",
+      "prediction_diff_distribution": "count    1000.000000\nmean        0.338259\nstd         0.229956\nmin         0.001051\n25%         0.150444\n50%         0.298617\n75%         0.509550\nmax         0.976503\nName: prediction_diff, dtype: float64"
+    },
+    "group_fairness_robustness": {
+      "grade": [
+        {
+          "threshold": 0.1,
+          "demographic_parity": 0.03421969849459172,
+          "equalized_odds": 0.04912372330547815,
+          "equal_opportunity": 0.0982474466109563
+        },
+        {
+          "threshold": 0.2,
+          "demographic_parity": 0.044718368087228844,
+          "equalized_odds": 0.05707404828226559,
+          "equal_opportunity": 0.11414809656453118
+        },
+        {
+          "threshold": 0.3,
+          "demographic_parity": 0.034450365676060524,
+          "equalized_odds": 0.013053294358397749,
+          "equal_opportunity": 0.026106588716795498
+        },
+        {
+          "threshold": 0.4,
+          "demographic_parity": 0.01214105867353743,
+          "equalized_odds": 0.025620489350466458,
+          "equal_opportunity": 0.051240978700932915
+        },
+        {
+          "threshold": 0.5,
+          "demographic_parity": 0.01784917253572149,
+          "equalized_odds": 0.0682017543859649,
+          "equal_opportunity": 0.1364035087719298
+        },
+        {
+          "threshold": 0.6,
+          "demographic_parity": 0.012122962392504155,
+          "equalized_odds": 0.046585108255588814,
+          "equal_opportunity": 0.09317021651117763
+        },
+        {
+          "threshold": 0.7,
+          "demographic_parity": 0.012517545058193691,
+          "equalized_odds": 0.07686403508771929,
+          "equal_opportunity": 0.15372807017543857
+        },
+        {
+          "threshold": 0.8,
+          "demographic_parity": 0.007534776967175499,
+          "equalized_odds": 0.06677631578947368,
+          "equal_opportunity": 0.13355263157894737
+        },
+        {
+          "threshold": 0.9,
+          "demographic_parity": 0.013908757400312707,
+          "equalized_odds": 0.059539473684210524,
+          "equal_opportunity": 0.11907894736842105
+        }
+      ],
+      "home_ownership": [
+        {
+          "threshold": 0.1,
+          "demographic_parity": 0.011483954622159454,
+          "equalized_odds": 0.05480625133804323,
+          "equal_opportunity": 0.10961250267608647
+        },
+        {
+          "threshold": 0.2,
+          "demographic_parity": 0.07172605555051836,
+          "equalized_odds": 0.1197762633406198,
+          "equal_opportunity": 0.2395525266812396
+        },
+        {
+          "threshold": 0.3,
+          "demographic_parity": 0.12681919384249607,
+          "equalized_odds": 0.14305001928764308,
+          "equal_opportunity": 0.28610003857528615
+        },
+        {
+          "threshold": 0.4,
+          "demographic_parity": 0.05229647092009948,
+          "equalized_odds": 0.09354506879259358,
+          "equal_opportunity": 0.18709013758518717
+        },
+        {
+          "threshold": 0.5,
+          "demographic_parity": 0.1066642487986218,
+          "equalized_odds": 0.03773948823453774,
+          "equal_opportunity": 0.07547897646907548
+        },
+        {
+          "threshold": 0.6,
+          "demographic_parity": 0.13826578414483032,
+          "equalized_odds": 0.019416227337019393,
+          "equal_opportunity": 0.038832454674038785
+        },
+        {
+          "threshold": 0.7,
+          "demographic_parity": 0.10383534318614562,
+          "equalized_odds": 0.008181178701409914,
+          "equal_opportunity": 0.016362357402819827
+        },
+        {
+          "threshold": 0.8,
+          "demographic_parity": 0.09226181481145668,
+          "equalized_odds": 0.05284814195705284,
+          "equal_opportunity": 0.10569628391410568
+        },
+        {
+          "threshold": 0.9,
+          "demographic_parity": 0.010838135678900004,
+          "equalized_odds": 0.101002957438601,
+          "equal_opportunity": 0.202005914877202
+        }
+      ],
+      "emp_length": [
+        {
+          "threshold": 0.1,
+          "demographic_parity": 0.01223801039166672,
+          "equalized_odds": 0.01260385005065856,
+          "equal_opportunity": 0.02520770010131712
+        },
+        {
+          "threshold": 0.2,
+          "demographic_parity": 0.019122401837879832,
+          "equalized_odds": 0.027131578947368395,
+          "equal_opportunity": 0.05426315789473679
+        },
+        {
+          "threshold": 0.3,
+          "demographic_parity": 0.019695018500011874,
+          "equalized_odds": 0.036585526315789485,
+          "equal_opportunity": 0.07317105263157897
+        },
+        {
+          "threshold": 0.4,
+          "demographic_parity": 0.01830798282976076,
+          "equalized_odds": 0.023187814497484027,
+          "equal_opportunity": 0.046375628994968054
+        },
+        {
+          "threshold": 0.5,
+          "demographic_parity": 0.021524951809809345,
+          "equalized_odds": 0.02947691664131427,
+          "equal_opportunity": 0.05895383328262854
+        },
+        {
+          "threshold": 0.6,
+          "demographic_parity": 0.01689036434163871,
+          "equalized_odds": 0.041653916768665866,
+          "equal_opportunity": 0.08330783353733173
+        },
+        {
+          "threshold": 0.7,
+          "demographic_parity": 0.023457077622934364,
+          "equalized_odds": 0.02521882488378349,
+          "equal_opportunity": 0.05043764976756698
+        },
+        {
+          "threshold": 0.8,
+          "demographic_parity": 0.019200369862137828,
+          "equalized_odds": 0.030080620626711282,
+          "equal_opportunity": 0.060161241253422565
+        },
+        {
+          "threshold": 0.9,
+          "demographic_parity": 0.012105799902787165,
+          "equalized_odds": 0.01289655172413793,
+          "equal_opportunity": 0.02579310344827586
+        }
+      ]
+    },
+    "summary": {
+      "protected_attributes_tested": 3,
+      "individual_fairness_score": NaN,
+      "robustness_tests": 3
+    }
+  },
+  "business_impact": {
+    "threshold_optimization": {
+      "threshold_analysis": "    threshold     tp     fp     tn     fn  precision  recall  total_cost  portfolio_value  rejection_rate\n0        0.01  14320  81745    807  14320   0.149066     0.5   222974500    -1.067097e+08        0.863956\n1        0.02  14185  80919   1633  14185   0.149153     0.5   220866900    -1.034121e+08        0.857395\n2        0.03  14068  80107   2445  14068   0.149381     0.5   219030700    -1.002719e+08        0.850815\n3        0.04  13921  79306   3246  13921   0.149324     0.5   216745600    -9.697017e+07        0.844493\n4        0.05  13768  78481   4071  13768   0.149248     0.5   214368100    -9.355916e+07        0.837957\n..        ...    ...    ...    ...    ...        ...     ...         ...              ...             ...\n93       0.94    874   4965  77587    874   0.149683     0.5    13606500     2.056141e+08        0.069265\n94       0.95    721   4176  78376    721   0.147233     0.5    11232600     2.089194e+08        0.058302\n95       0.96    563   3387  79165    563   0.142532     0.5     8783700     2.122571e+08        0.047205\n96       0.97    443   2539  80013    443   0.148558     0.5     6898900     2.155223e+08        0.035739\n97       0.98    286   1626  80926    286   0.149582     0.5     4452600     2.192175e+08        0.023002\n\n[98 rows x 10 columns]",
+      "optimal_threshold": "threshold          9.800000e-01\ntp                 2.860000e+02\nfp                 1.626000e+03\ntn                 8.092600e+04\nfn                 2.860000e+02\nprecision          1.495816e-01\nrecall             5.000000e-01\ntotal_cost         4.452600e+06\nportfolio_value    2.192175e+08\nrejection_rate     2.300178e-02\nName: 97, dtype: float64",
+      "recommended_threshold": 0.98
+    },
+    "lift_analysis": "   percentile  threshold  total_loans  defaults  default_rate      lift  value_added  value_per_loan\n0          10   0.900065         9702      1424      0.146774  0.984241    -205200.0      -21.150278\n1          20   0.801502        19404      2890      0.148938  0.998756     -32400.0       -1.669759\n2          30   0.701317        29106      4343      0.149213  1.000599      23400.0        0.803958\n3          40   0.600910        38808      5773      0.148758  0.997546    -127800.0       -3.293135\n4          50   0.501331        48510      7264      0.149742  1.004147     270000.0        5.565863",
+    "roi_analysis": {
+      "implementation_cost": 100000,
+      "required_auc_improvement": 0.0007407407407407408,
+      "required_default_reduction": 0.00011111111111111112,
+      "months_to_break_even": 2.4000000000000004,
+      "annual_value": 6000000,
+      "roi_after_1_year": 5900.0
+    },
+    "summary": {
+      "optimal_threshold": 0.98,
+      "max_portfolio_value": 219217485.4014852,
+      "total_value_added": -72000.00000001752,
+      "roi_percentage": 5900.0
+    }
+  },
+  "enhanced_error_analysis": {
+    "error": "'Column not found: target_5%'"
+  },
+  "sensitivity_analysis": {
+    "baseline_auc": 0.4986233681352198,
+    "noisy_auc": 0.5003410220294758,
+    "adversarial_auc": 0.49664508121349016,
+    "noisy_degradation": -0.0017176538942560438,
+    "adversarial_degradation": 0.001978286921729633,
+    "robustness_score": 0.9997386473998919,
+    "performance_stable": "True"
+  },
+  "execution_summary": {
+    "total_execution_time": 568.7431998252869,
+    "components_completed": 5,
+    "alerts_generated": 0,
+    "fairness_issues": 1,
+    "business_value": -72000.00000001752
+  }
+}
