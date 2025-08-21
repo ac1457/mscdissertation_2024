@@ -53,14 +53,14 @@ dissertation_results/
    ```
 
 2. **Run Enhanced Analysis**:
-   ```bash
-   python run_enhanced_analysis.py
-   ```
+```bash
+python run_enhanced_analysis.py
+```
 
 3. **Run Advanced Integration**:
-   ```bash
-   python run_advanced_integration.py
-   ```
+```bash
+python run_advanced_integration.py
+```
 
 ### Key Improvements
 
