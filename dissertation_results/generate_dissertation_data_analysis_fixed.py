@@ -19,18 +19,18 @@ sns.set_palette("husl")
 class DissertationDataAnalysis:
     def __init__(self):
         self.data = None
-        self.output_dir = Path("dissertation_data_analysis")
+        self.output_dir = Path("../dissertation_data_analysis")
         self.output_dir.mkdir(exist_ok=True)
         
     def load_data(self):
         """Load the processed dataset and create target variable"""
         try:
             # Try to load real data first
-            self.data = pd.read_csv('data/real_lending_club/real_lending_club_processed.csv')
+            self.data = pd.read_csv('../data/real_lending_club/real_lending_club_processed.csv')
             print(f"Loaded REAL Lending Club dataset: {len(self.data):,} records")
         except FileNotFoundError:
             # Fall back to synthetic data
-            self.data = pd.read_csv('data/synthetic_loan_descriptions_with_realistic_targets.csv')
+            self.data = pd.read_csv('../data/synthetic_loan_descriptions_with_realistic_targets.csv')
             print(f"Using SYNTHETIC data: {len(self.data):,} records")
         
         # Create target variable from loan_status if it exists

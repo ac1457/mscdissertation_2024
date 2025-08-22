@@ -329,18 +329,18 @@ This comprehensive data preparation ensures a robust foundation for the sentimen
 The data analysis process generated comprehensive visualizations and analysis files, all stored in the `dissertation_data_analysis/` directory:
 
 **Key Visualizations:**
-- `feature_distributions.png`: Distribution plots for loan amounts, income, interest rates, DTI, credit grades, and loan purposes
-- `text_analysis_plots.png`: Text feature analysis including text length, word count, sentiment scores, and sentiment categories
-- `missing_data_analysis.png`: Missing data patterns across all features
-- `correlation_heatmap.png`: Feature correlation analysis for the top 15 most correlated features
-- `target_analysis.png`: Target variable analysis showing default rates by various factors
+- `dissertation_data_analysis/feature_distributions.png`: Distribution plots for loan amounts, income, interest rates, DTI, credit grades, and loan purposes
+- `dissertation_data_analysis/text_analysis_plots.png`: Text feature analysis including text length, word count, sentiment scores, and sentiment categories
+- `dissertation_data_analysis/missing_data_analysis.png`: Missing data patterns across all features
+- `dissertation_data_analysis/correlation_heatmap.png`: Feature correlation analysis for the top 15 most correlated features
+- `dissertation_data_analysis/target_analysis.png`: Target variable analysis showing default rates by various factors
 
 **Analysis Files:**
-- `dataset_overview_table.csv`: Comprehensive dataset statistics
-- `feature_categories_table.csv`: Feature categorization and counts
-- `numerical_features_summary.csv`: Statistical descriptions of numerical features
-- `categorical_features_summary.csv`: Categorical feature distributions
-- `missing_data_summary.csv`: Detailed missing data analysis
-- `correlation_matrix.csv`: Complete correlation matrix for all features
+- `dissertation_data_analysis/dataset_overview_table.csv`: Comprehensive dataset statistics
+- `dissertation_data_analysis/feature_categories_table.csv`: Feature categorization and counts
+- `dissertation_data_analysis/numerical_features_summary.csv`: Statistical descriptions of numerical features
+- `dissertation_data_analysis/categorical_features_summary.csv`: Categorical feature distributions
+- `dissertation_data_analysis/missing_data_summary.csv`: Detailed missing data analysis
+- `dissertation_data_analysis/correlation_matrix.csv`: Complete correlation matrix for all features
 
 These files provide the foundation for the comprehensive analysis presented in the subsequent sections of this dissertation. 
