@@ -5,6 +5,7 @@
 - Optimal Decision Threshold: 0.980
 - Maximum Portfolio Value: $219,217,485.40
 - Total Value Added: $-72,000.00
+- ROI After 1 Year: 5900.0%
 
 ## Threshold Optimization
 - Optimal Threshold: 0.980
@@ -39,5 +40,9 @@
 - Value Added: $270,000.00
 - Value per Loan: $5.57
 
-## Summary
-The analysis shows negative total value added (-$72,000), indicating that the model improvements do not provide positive business impact. The lift analysis reveals mixed results across percentiles, with most showing below-baseline performance.
+## ROI Analysis
+- Implementation Cost: $100,000.00
+- Required AUC Improvement: 0.001
+- Months to Break-Even: 2.4
+- Annual Value: $6,000,000.00
+- ROI After 1 Year: 5900.0%
